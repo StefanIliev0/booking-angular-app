@@ -1,1 +1,18 @@
 /* layout css */
+.site {
+    display: flex;
+}
+.site{
+    flex-direction: column;
+    padding: 3em;
+}
+
+
+app-header ,app-footer {
+    background-color:var(--backgroud-module);
+    border-radius: 1em;
+    padding: 1em;
+}
+app-header{
+    margin-bottom: 2em;
+}

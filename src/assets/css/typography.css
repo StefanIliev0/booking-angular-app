@@ -12,9 +12,9 @@ body, input, button, textarea, option, select, table, th, td {
     font:inherit;
 }
 
-p, ul ,ol {
+/* p, ul ,ol {
     padding-bottom: 1em;
-}
+} */
 
 h1 ,h2 , h3, h4, h5, h6{
     font-family: "Crimson Text" , serif;
