@@ -1,0 +1,33 @@
+
+.trip-card{
+    flex: 0 0 22em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color:var(--backgroud-module);
+    border: 3px solid var(--white);
+    border-radius: 1.5em;
+    padding: 1em;
+    margin-block: 1em;
+}
+img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1.5em 1.5em 1em 1em ;
+    border:2px solid var(--white); ;
+}
+p{
+    margin-block: 1em;
+    font-weight: bold;
+}
+.title{
+    font-size: 1.5em;
+}
+a{
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    background-color: var(--background-link);
+    color: var(--white);
+    border: 3px solid var(--white);
+}

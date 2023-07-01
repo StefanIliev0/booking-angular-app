@@ -1,0 +1,35 @@
+.search-form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    align-items: center;
+    margin-block: 2em;
+}
+ label{
+    font-size: 1.2em;
+    font-weight: bold;
+ }
+input, select{
+    width: 12em;
+    border: 3px solid var(--background-link);
+    padding: 0.5em ;
+    border-radius: 0.5em;
+}
+
+button {
+    margin: 0 auto;
+    padding: 0.5em 1em ;
+    border: 3px solid var(--white);
+    border-radius: 0.5em;
+    background-color: var(--background-link);
+    width: 10em;
+    color: var(--white);
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (width <= 700px){
+    .search-form{
+        flex-direction: column;
+    }
+}

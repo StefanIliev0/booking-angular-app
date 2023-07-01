@@ -12,6 +12,7 @@ a{
     border-radius: 0.5em;
     background-color: var(--background-link);
     color: var(--white);
+    border: 3px solid var(--white);
 }
 .nav-ul, .user-info-ul{
     gap: 2em;
@@ -22,6 +23,7 @@ a{
 }
 .site-title{
     text-align: center;
+    padding-right: 3em;
 }
 .title{
     font-size: 2.2em;
