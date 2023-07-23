@@ -1,0 +1,39 @@
+<div class="container">
+    <form  class="login-form" #form="ngForm" (ngSubmit)="login(form)">
+        <h1>Login</h1>
+        <label for="username">Username</label>
+        <input type="text"
+        name="username"
+        placeholder="Your username..."
+        id="username-register"
+        ngModel
+        #username="ngModel"
+        required 
+        minlength="5"
+        >
+
+        <ng-container *ngIf="username.touched">
+            <p class="error" *ngIf="username.errors?.['required']" > Username is required! </p>
+            <p class="error" *ngIf="!!username.errors?.['minlength']" > Username must be a least 5 characters! </p>
+        </ng-container>
+        
+        <label for="password">Password</label>
+        <input type="password"
+        name="password" 
+        id="password-register"
+        placeholder="Your password..." 
+        ngModel
+        #password="ngModel"
+        required 
+        minlength="4"
+        >
+
+        <ng-container *ngIf="password.touched">
+            <p class="error" *ngIf="password.errors?.['required']" > Password is required! </p>
+            <p class="error" *ngIf="!!password.errors?.['minlength']" > Password must be a least 4 characters! </p>
+        </ng-container>
+        <app-err-message/>
+        <app-button [text]="'Login'"  />
+        <p>If you don't have a registration yet <a [routerLink]="'/register'">Click here!</a> </p>
+    </form>
+</div>

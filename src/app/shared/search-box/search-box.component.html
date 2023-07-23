@@ -1,20 +1,29 @@
 <div class="search-container">
-    <form action="" class="search-form">
+    <form class="search-form" #form="ngForm" (ngSubmit)="find(form)">
         <label for="location">Location:</label>
-        <input type="text" id="location">
-        <label for="from">Available from:</label>
-        <input type="date" id="from">
-        <label for="to">Available to:</label>
-        <input type="date" id="to">
+        <input 
+            type="text" 
+            id="location"
+            name="location"
+            [(ngModel)]="Currentlocation"
+            #location="ngModel"
+            >
         <label for="price">Price:</label>
-        <select name="price" id="price">
+        <select 
+            name="price" 
+            id="price"
+            [(ngModel)]="CurrentPrice"
+            #price="ngModel"
+        
+            >
             <option value="litle than 100">&lt;100</option>
             <option value="100-200">100-200</option>
             <option value="200-300">200-300</option>
             <option value="300-400">300-400</option>
             <option value="more than 100">&gt;400</option>
-            
         </select>
-        <button type="submit">Search</button>
+        <div class="button-container">
+            <app-button [text]="'Find'" />
+        </div>
     </form>
 </div>

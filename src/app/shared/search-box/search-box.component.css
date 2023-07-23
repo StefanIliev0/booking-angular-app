@@ -16,16 +16,8 @@ input, select{
     border-radius: 0.5em;
 }
 
-button {
+.button-container {
     margin: 0 auto;
-    padding: 0.5em 1em ;
-    border: 3px solid var(--white);
-    border-radius: 0.5em;
-    background-color: var(--background-link);
-    width: 10em;
-    color: var(--white);
-    text-align: center;
-    font-weight: bold;
 }
 
 @media (width <= 700px){

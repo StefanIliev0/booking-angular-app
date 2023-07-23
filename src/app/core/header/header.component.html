@@ -5,19 +5,22 @@
 </div>
 <nav>
     <ul class="nav-ul">
-        <!-- add hrefs -->
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Holiday trips</a></li>
-        <li><a href="#">Work trips</a></li>
-        <!-- <li><a href="#">Add place</a></li> -->
+        <li><app-link  [text]="'Home'" [path]="''"/></li>
+        <li><app-link  [text]="'Holiday trips'" [path]="'/holiday-trips/list'"/></li>
+        <li><app-link  [text]="'Work trips'" [path]="'/work-trips/list'"/></li>
+        <li *ngIf="isAuth" ><app-link  [text]="'Add place'" [path]="'/add-place'"/></li>
     </ul>
 </nav>
 <div class="header-user-info">
     <ul class="user-info-ul">
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
-        <!-- <li><a href="#">Logout</a></li>
-        <li><a href="#">Profile</a></li> -->
+        <ng-container *ngIf="!isAuth">
+            <li><app-link  [text]="'Login'" [path]="'/login'"/></li>
+            <li><app-link  [text]="'Register'" [path]="'/register'"/></li>
+        </ng-container>
+        <ng-container *ngIf="isAuth">
+            <app-button [text]="'Logout'" (newEvent)="logout($event)"/>
+            <li><app-link  [text]="'Profile'" [path]="'/profile'"/></li>
+        </ng-container>
     </ul>
 </div>
 </header>

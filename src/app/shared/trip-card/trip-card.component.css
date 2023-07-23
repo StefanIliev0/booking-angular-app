@@ -10,12 +10,23 @@
     padding: 1em;
     margin-block: 1em;
 }
-img{
-    display: block;
-    width: 100%;
-    height: auto;
+.media_container{
+    height: 15em;
+    width: 20em;
+    overflow: hidden;
     border-radius: 1.5em 1.5em 1em 1em ;
     border:2px solid var(--white); ;
+    text-align: center;}
+img{
+    display: block;
+    height: 100%; 
+}
+svg{
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    fill: rgba(255, 255, 255, 0.3);
+    padding: 3em;
 }
 p{
     margin-block: 1em;

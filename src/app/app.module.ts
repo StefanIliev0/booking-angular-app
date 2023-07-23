@@ -1,36 +1,42 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import {StoreModule} from "@ngrx/store"; 
+
+
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { FeatureModule } from './feature/feature.module';
-import { HomeComponent } from './home/home.component';
-import { HolydayTipsComponent } from './holyday-tips/holyday-tips.component';
-import { WorkTripsComponent } from './work-trips/work-trips.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AddPlaceComponent } from './add-place/add-place.component';
+import { PlacesModule } from './feature/places/places.module';
+import { UsersModule } from './feature/users/users.module';
+
+
+import { userReducer } from './store/user.reducer';
+import { ErrReducer } from './store/err.reducer';
+import { FindReducer } from './store/find.reducer';
+
+
+import { authInterseptorProvider } from './interceptors/auth.interseptor';
+import { UserService } from './feature/users/user-service.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    HolydayTipsComponent,
-    WorkTripsComponent,
-    LoginComponent,
-    RegisterComponent,
-    AddPlaceComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot({user : userReducer , err :  ErrReducer , find : FindReducer}),
     CoreModule,
     SharedModule,
-    FeatureModule
+    PlacesModule,
+    UsersModule,
   ],
-  providers: [],
+  providers : [authInterseptorProvider, UserService ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {  }

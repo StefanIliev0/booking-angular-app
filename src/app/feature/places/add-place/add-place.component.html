@@ -1,0 +1,269 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="create(form)" class="form">
+        <h1>Add your own place!</h1>
+        <label for="title">Title</label>
+        <input 
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Your title..."
+            ngModel
+            #title="ngModel"
+            required 
+            minlength="5"
+        >
+        <ng-container *ngIf="title.touched">
+            <p class="error" *ngIf="title.errors?.['required']" > Title is required! </p>
+            <p class="error" *ngIf="!!title.errors?.['minlength']" > Title must be a least 5 characters! </p>
+        </ng-container>
+        <label for="location">Location</label>
+        <input 
+            type="text" 
+            id="location"
+            name="location"
+            placeholder="Your location..."
+            ngModel
+            #location="ngModel"
+            required 
+            minlength="3"
+            >
+            <ng-container *ngIf="location.touched">
+                <p class="error" *ngIf="location.errors?.['required']" > Location is required! </p>
+                <p class="error" *ngIf="!!location.errors?.['minlength']" > Location must be a least 3 characters! </p>
+            </ng-container>
+        <label for="description">Description</label>
+        <textarea 
+            id="description"
+            name="description"
+            placeholder="Description of your place..."
+            ngModel
+            #description="ngModel"
+            minlength="10"
+        ></textarea> 
+        <label for="price">Price</label>
+        <input 
+            type="number" 
+            id="price"
+            name="price"
+            placeholder="Price for your place..."
+            ngModel
+            #price="ngModel"
+            required 
+            [min]="0"
+            >
+            <ng-container *ngIf="price.touched">
+                <p class="error" *ngIf="price.errors?.['required']" > Price is required! </p>
+                <p class="error" *ngIf="!!price.errors?.['min']" > Price must be a positive number! </p>
+            </ng-container>
+        <div class="group-container">
+            <label for="businesTravel">It`s good for work travels</label>
+            <input 
+                type="checkbox" 
+                id="businesTravel"
+                name="businesTravel"
+                ngModel
+                #businesTravel="ngModel"
+                >
+        </div>
+        <div class="facilities-container">
+            <p>Facilities in place</p>
+            <div>
+                <label for="wifi">Wi-Fi</label>
+                <input 
+                    type="checkbox" 
+                    id="wifi"
+                    name="wifi"
+                    ngModel
+                    #wifi="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="parking">Free parking</label>
+                <input 
+                    type="checkbox" 
+                    id="parking"
+                    name="parking"
+                    ngModel
+                    #parking="ngModel"
+                    > 
+            </div>
+            <div>
+                <label for="beachAccess">beach access</label>
+                <input 
+                    type="checkbox" 
+                    id="beachAccess"
+                    name="beachAccess"
+                    ngModel
+                    #beachAccess="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="kitchen">Kitchen</label>
+                <input 
+                    type="checkbox" 
+                    id="kitchen"
+                    name="kitchen"
+                    ngModel
+                    #kitchen="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="privateBathroom">Private bathroom</label>
+                <input 
+                    type="checkbox" 
+                    id="privateBathroom"
+                    name="privateBathroom"
+                    ngModel
+                    #privateBathroom="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="privateToilet">Private toilet</label>
+                <input 
+                    type="checkbox" 
+                    id="privateToilet"
+                    name="privateToilet"
+                    ngModel
+                    #privateToilet="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="lounge">lounge</label>
+                <input 
+                    type="checkbox" 
+                    id="lounge"
+                    name="lounge"
+                    ngModel
+                    #lounge="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="pool">pool</label>
+                <input 
+                    type="checkbox" 
+                    id="pool"
+                    name="pool"
+                    ngModel
+                    #pool="ngModel"
+                >
+            </div>
+            <div>
+                <label for=" publicTransportAccess">Public transport access</label>
+                <input 
+                    type="checkbox" 
+                    id="publicTransportAccess"
+                    name="publicTransportAccess"
+                    ngModel
+                    #publicTransportAccess="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="seaView">Sea view</label>
+                <input 
+                    type="checkbox" 
+                    id="seaView"
+                    name="seaView"
+                    ngModel
+                    #seaView="ngModel">
+            </div>
+            <div>
+                <label for="cityView">City view</label>
+                <input 
+                    type="checkbox" 
+                    id="cityView"
+                    name="cityView"
+                    ngModel
+                    #cityView="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="streetView">Street view</label>
+                <input 
+                    type="checkbox" 
+                    id="streetView"
+                    name="streetView"
+                    ngModel
+                    #streetView="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="courtyardView">Courtyard view</label>
+                <input 
+                    type="checkbox" 
+                    id="courtyardView"
+                    name="courtyardView"
+                    ngModel
+                    #courtyardView="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="largeDoubleBed">Large double bed</label>
+                <input 
+                    type="checkbox" 
+                    id="largeDoubleBed"
+                    name="largeDoubleBed"
+                    ngModel
+                    #largeDoubleBed="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="smallDoubleBed">Small double bed</label>
+                <input 
+                    type="checkbox" 
+                    id="smallDoubleBed"
+                    name="smallDoubleBed"
+                    ngModel
+                    #smallDoubleBed="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="singleBed">Single bed</label>
+                <input 
+                    type="checkbox" 
+                    id="singleBed"
+                    name="singleBed"
+                    ngModel
+                    #singleBed="ngModel"
+                    >
+            </div>
+            <div>
+                <label for="sofa">sofa</label>
+                <input 
+                    type="checkbox" 
+                    id="sofa"
+                    name="sofa"
+                    ngModel
+                    #sofa="ngModel"
+                    >
+            </div>
+            <div> 
+                <label for="terrace">terrace</label>
+                <input 
+                    type="checkbox" 
+                    id="terrace"
+                    name="terrace"
+                    ngModel
+                    #terrace="ngModel"
+                    >
+            </div>
+        </div>
+            <div class="img-container" *ngFor="let item of picItems ; index as i">
+                <label for="img{{item}}">Image</label>
+                <input 
+                    type="text" 
+                    id="img-{{item}}"
+                    name="img-{{item}}"
+                    placeholder="Description of your place..."
+                    ngModel
+                    uri
+                    minlength=""
+                    >
+                <div class="addButton" *ngIf="i == picItems.length - 1">
+                    <app-button  [text]="'Add one more picture'" (newEvent)="AddMoreOne(item)" />
+                </div>
+                
+            </div>
+            <app-err-message/>
+        <app-button [text]="'Make it'"  />
+    </form>
+</div>

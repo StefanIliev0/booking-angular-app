@@ -1,0 +1,12 @@
+<div class="page-container">
+    <ul>
+        <li class="coCoCoPage" (click)="replacePage(num - 3)">{{(num >= 4) ? (num - 3) : ""}}</li>
+        <li class="coCoPage" (click)="replacePage(num - 2)">{{(num >= 3) ? (num - 2) : ""}}</li>
+        <li class="coPage" (click)="replacePage(num - 1)" >{{(num >= 2) ? (num - 1) : ""}}</li>
+        <li class="curentPage">{{num}}</li>
+        <li class="coPage" (click)="replacePage(num + 1)"> {{maxPage >= (num + 1) ? (num + 1) : ''}}</li>
+        <li class="coCoPage" (click)="replacePage(num + 2)">{{maxPage >= (num + 2) ? (num + 2) : ''}}</li>
+        <li class="coCoCoPage" (click)="replacePage(num + 3)">{{maxPage >= (num + 3) ? (num + 3) : ''}}</li>
+    </ul>
+
+</div>

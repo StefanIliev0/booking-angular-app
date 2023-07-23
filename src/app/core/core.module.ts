@@ -2,20 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { HomeComponent } from './home/home.component';
+import { SharedModule } from '../shared/shared.module';
+import { UserService } from '../feature/users/user-service.service';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
   ],
+  providers :[UserService],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
   ]
 })
 export class CoreModule { }

@@ -1,0 +1,62 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+img{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+h4, p{
+    padding-bottom: 1em;
+    text-align: center;
+}
+
+.banner{
+    position: relative;
+    text-align: center;
+    padding-block: 10em;
+    height: 30em;
+    border-radius: 1em;
+    overflow: hidden;
+    background-image: url(https://ekipnews.com/wp-content/uploads/2018/03/travel-222.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.banner h1 , .banner p {
+    color: var(--white);
+    text-shadow: 0 0 50px rgb(0, 0, 0);
+    font-weight: bold;
+}
+.banner p {
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.card-container{
+    background-color: var(--backgroud-module);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 2em;
+    margin-block: 2em;
+    border-radius: 1em;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 24em;
+    background-color: var(--backgroud-module);
+    border-radius: 1em;
+    padding: 1em;
+    margin-block: 2em;
+}
+.media{
+  height: 15em;
+  border-radius: 1em 1em 0 0;
+  overflow: hidden;
+  margin-bottom: 1em;
+}

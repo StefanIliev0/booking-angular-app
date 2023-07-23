@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Work trip places</h1>
+    <app-search-box />
+    <app-pagination [maxPage]="maxPage" [num]="page" (newEvent)="replacePage($event)"/>
+    <div class="cards-container">
+    <app-trip-card *ngFor="let item of colection" title={{item.title}} location={{item.location}} price={{item.price}}  owner={{item.owner}} img={{item.image}} _id={{item._id}}/> 
+    </div>
+    <app-pagination [maxPage]="maxPage" [num]="page" (newEvent)="replacePage($event)"/>
+    </div>

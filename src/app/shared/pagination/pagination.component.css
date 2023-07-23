@@ -1,0 +1,44 @@
+.page-container ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 25em;
+}
+
+
+li {
+    border: 2px solid var(--backgroud-module);
+    border-radius: 0.5em;
+    color:var(--background-link ) ;
+    cursor: pointer;
+    text-align: center;
+}
+
+li:hover{
+    color: orange;
+    border-color: orange;
+}
+
+.curentPage{
+    font-size: 2em;
+    width: 2em;
+    color: rgb(133, 159, 217);
+    border-color: rgb(133, 159, 217);
+}
+.coPage{
+    font-size: 1.5em;
+    width: 1.8em;
+    height: 1.8em;
+    margin-top: 0.5em;
+}
+.coCoPage{
+    font-size: 1.2em;
+    width: 1.6em;
+    height: 1.6em;
+    margin-top: 0.8em;
+}
+.coCoCoPage{
+    margin-top: 1.2em;
+    width: 1.4em;
+    height: 1.4em;
+}
