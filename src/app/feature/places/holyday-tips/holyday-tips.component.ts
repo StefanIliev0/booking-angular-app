@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlaceService } from '../place.service';
 import { Place_short } from 'src/app/types/Place_short';
-import { Store } from '@ngrx/store';
-import { selectLocation, selectPrice } from 'src/app/store/find.selectors';
+import { Subscription } from 'rxjs';
 
 
 type holidayResp = {
@@ -15,26 +14,30 @@ type holidayResp = {
   templateUrl: './holyday-tips.component.html',
   styleUrls: ['./holyday-tips.component.css']
 })
-export class HolydayTipsComponent implements OnInit  {
+export class HolydayTipsComponent implements OnInit ,OnDestroy {
   colection:Place_short[] = []; 
   page = 1;
   location = '';
   price = '';
   maxPage = 1;
-  constructor( private service : PlaceService , private store : Store){
-    store.select(selectLocation).subscribe(res => {
+  $holidayPlaces : Subscription = new Subscription; 
+  $location : Subscription = new Subscription; 
+  $prise : Subscription = new Subscription; 
+
+  constructor( private service : PlaceService ){
+    this.$location  =  this.service.getLocation().subscribe(res => {
       if(this.location != res){
       this.location = res;
-         this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
+      this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
         const response = res as holidayResp ; 
         this.colection = response.colection ;
         this.maxPage = Math.ceil( response.colectionLength / 6) ; 
       })}
     })
-    store.select(selectPrice).subscribe(res => {
+    this.$prise = service.getPrice().subscribe(res => {
       if(this.price != res){
       this.price = res;
-      this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
+      this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
      const response = res as holidayResp ; 
      this.colection = response.colection ;
      this.maxPage = Math.ceil( response.colectionLength / 6) ; 
@@ -43,7 +46,7 @@ export class HolydayTipsComponent implements OnInit  {
   }
   replacePage(num :number){
    this.page = num; 
-   this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
+   this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
     const response = res as holidayResp ; 
     this.colection = response.colection ;
     this.maxPage = Math.ceil( response.colectionLength / 6) ; 
@@ -52,12 +55,16 @@ export class HolydayTipsComponent implements OnInit  {
   
 
   ngOnInit(): void {
-    this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
+    this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
      const response = res as holidayResp;
      this.colection = response.colection ;
      this.maxPage = Math.ceil( response.colectionLength / 6) ; 
     })
   
   }
-
+  ngOnDestroy(): void {
+    this.$location.unsubscribe();
+    this.$prise.unsubscribe();
+    this.$holidayPlaces.unsubscribe();
+  }
 }

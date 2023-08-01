@@ -5,6 +5,7 @@ import { Mesage } from "./Mesage";
 export type User = {
     _id : string
     username : string ,
+    nickname : string
     password : string, 
     accessToken : string, 
     places : Place[] | [],

@@ -12,6 +12,7 @@ export type Place = {
     owner : User, 
     rating : Rate[],
     price : number,
+    rooms : number ,
     comments : Comment[],
     books : Book[],
     facilities :string[],

@@ -2,6 +2,6 @@
 
 
 export  type Rate = {
-        user : String , 
-        rate : Number
+        user : string , 
+        rate : number
 }

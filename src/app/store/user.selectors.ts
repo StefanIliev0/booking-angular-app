@@ -28,3 +28,11 @@ export const selectUserBooks = createSelector(
     selectUser,
   (user) =>     user.books 
 );
+export const selectUserNickname = createSelector(
+    selectUser,
+  (user) =>     user.nickname
+);
+export const selectUserPlaces = createSelector(
+  selectUser,
+(user) =>     user.places
+);

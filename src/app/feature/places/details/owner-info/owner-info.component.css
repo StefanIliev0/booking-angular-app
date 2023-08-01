@@ -1,0 +1,46 @@
+/* .owner-info-section{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    flex: 0 1 500px;
+    max-height: 600px;
+    min-height: 300px;
+} */
+.owner-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+.media{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+.profilePic{
+    border: 4px solid var(--background-link);
+    border-radius: 50%;
+    overflow: hidden;
+    width: 6em;
+    height: 6em;
+    padding: 0.5em;
+}
+.no-info{
+    color: rgba(227, 119, 119, 0.725);
+}
+.buttons {
+    display: flex;
+    gap: 2em;
+    margin-block: 2em;
+}
+svg , img {
+    width: 100%;
+    height: auto;
+    fill: var(--background-link);
+}
+p{
+    font-size: 1.1em;
+    font-weight: 600;
+}

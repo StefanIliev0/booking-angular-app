@@ -1,8 +1,7 @@
 
 
-
 export  type UserBook = {
-    place : String ,
+    place : string ,
     from : String,
     to : String
 }

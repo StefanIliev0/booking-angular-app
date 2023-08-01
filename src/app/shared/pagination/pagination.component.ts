@@ -20,6 +20,4 @@ export class PaginationComponent {
     this.newEvent.emit(value);
   }
   }
-
-
 }

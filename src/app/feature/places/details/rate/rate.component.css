@@ -1,0 +1,18 @@
+.rate-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.stars-container{
+    display: flex;
+    gap: 1em;
+}
+.voteStar{
+    cursor: pointer;
+}
+
+p { 
+    font-weight: 700;
+}

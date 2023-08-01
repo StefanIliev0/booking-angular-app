@@ -1,0 +1,111 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="edit(form)" class="form">
+        <h1>Edit place!</h1>
+        <label for="title">Title</label>
+        <input 
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Your title..."
+            ngModel
+            #title="ngModel"
+            required 
+            minlength="5"
+        >
+        <ng-container *ngIf="title.touched">
+            <p class="error" *ngIf="title.errors?.['required']" > Title is required! </p>
+            <p class="error" *ngIf="!!title.errors?.['minlength']" > Title must be a least 5 characters! </p>
+        </ng-container>
+        <label for="location">Location</label>
+        <input 
+            type="text" 
+            id="location"
+            name="location"
+            placeholder="Your location..."
+            ngModel
+            #location="ngModel"
+            required 
+            minlength="3"
+            >
+            <ng-container *ngIf="location.touched">
+                <p class="error" *ngIf="location.errors?.['required']" > Location is required! </p>
+                <p class="error" *ngIf="!!location.errors?.['minlength']" > Location must be a least 3 characters! </p>
+            </ng-container>
+        <label for="description">Description</label>
+        <textarea 
+            id="description"
+            name="description"
+            placeholder="Description of your place..."
+            ngModel
+            #description="ngModel"
+            minlength="10"
+        ></textarea> 
+        <label for="price">Price</label>
+        <input 
+            type="number" 
+            id="price"
+            name="price"
+            placeholder="Price for your place..."
+            ngModel
+            #price="ngModel"
+            required 
+            [min]="0"
+            >
+            <ng-container *ngIf="price.touched">
+                <p class="error" *ngIf="price.errors?.['required']" > Price is required! </p>
+                <p class="error" *ngIf="!!price.errors?.['min']" > Price must be a positive number! </p>
+            </ng-container>
+            <label for="price">Number of rooms</label>
+            <input 
+                type="number" 
+                id="rooms"
+                name="rooms"
+                ngModel
+                #rooms="ngModel"
+                placeholder="How many rooms are there in your place?"
+                required 
+                [min]="0"
+                >
+                <ng-container *ngIf="rooms.touched">
+                    <p class="error" *ngIf="rooms.errors?.['required']" > Rooms is required! </p>
+                    <p class="error" *ngIf="!!rooms.errors?.['min']" > Rooms must be a positive number! </p>
+                </ng-container>
+        <div class="group-container">
+            <label for="businesTravel">It`s good for work travels</label>
+            <input 
+                type="checkbox" 
+                id="businesTravel"
+                name="businesTravel"
+                ngModel
+                #businesTravel="ngModel"
+                >
+        </div>
+        <div class="facilities-container">
+            <p>Facilities in place</p>
+            <div *ngFor="let fac of fasilities">
+                <label for={{fac.fname}}>{{fac.text}}</label>
+                <input 
+                    type="checkbox" 
+                    id={{fac.fname}}
+                    name={{fac.fname}}
+                    ngModel
+                    >
+            </div>
+        </div>
+            <div class="img-container" *ngFor="let item of picItems ; index as i">
+                <label for="img{{item}}">Image</label>
+                <input 
+                    type="text" 
+                    id="img-{{item}}"
+                    name="img-{{item}}"
+                    placeholder="Description of your place..."
+                    ngModel
+                    uri
+                    minlength=""
+                    (blur)="addPicField(item)"
+                    >
+            </div>
+            <app-err-message/>
+        <app-button [text]="'Update'"  />
+    </form>
+</div>

@@ -1,10 +1,6 @@
 
-
-
-
-
 export  type Book = {
-    user : String ,
-    from : String,
-    to : String
+    user : string ,
+    from : string,
+    to : string
 }

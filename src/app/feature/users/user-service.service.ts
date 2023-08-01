@@ -5,6 +5,7 @@ import { BASIC_URI } from 'src/app/constants';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/types/User';
 import { UsersActions } from 'src/app/store/user.actions';
+import { selectIsAuth, selectUserId, selectUserNickname, selectUserPlaces } from 'src/app/store/user.selectors';
 
 @Injectable({
   providedIn: "any"
@@ -27,6 +28,7 @@ loginUser(username : string,  password : string ){
 
 logoutUser(userId : string) : void{
  this.http.post(`${this.USER_BASIC_URI}/logout` , {_id : userId}).subscribe(); 
+ localStorage.removeItem("bookingUser");
  this.store.dispatch(UsersActions.remove()); 
 }
 
@@ -40,4 +42,27 @@ addUserToLS(user : User) : void {
 localStorage.setItem(`bookingUser` , JSON.stringify(user)); 
 }
 
+isAuth() : boolean{
+ let isAuth : boolean = false;
+  this.store.select(selectIsAuth).subscribe(res => {
+    isAuth = res
+  })
+
+  return isAuth
+}
+getAuth(){
+  return this.store.select(selectIsAuth);
+}
+getUserId(){
+  return this.store.select(selectUserId);
+}
+getUserNickname(){
+  return this.store.select(selectUserNickname);
+}
+addPlace(PlaceId : string){
+  this.store.dispatch(UsersActions.addPlace({PlaceId}))
+};
+getPlaces(){
+  return this.store.select(selectUserPlaces) 
+}
 }

@@ -1,8 +1,9 @@
 
 export  type Comment = {
     user : {
-        userID :String,
-        userNickname : String
+        userID :string,
+        userNickname : string
     },
-    comment :String
+    comment :string,
+    _id: string
 }

@@ -1,0 +1,113 @@
+/* .booking-section{
+    border: 1px solid black;
+    display: flex;
+    margin: 0 auto;
+    flex: 0 1 800px;
+    max-height: 600px;
+    min-height: 300px;
+} */
+.reservation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+h4{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: white;
+    text-shadow: 0 0 4px rgba(0,0, 0, 0.8);
+}
+.month-container {
+    text-align: center;
+    border: 2px solid var(--background-link);
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+.month{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.calendar-container{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+svg{
+    fill: var(--background-link);
+    height: 2.5em;
+}
+.previous-month , .next-month{
+    border: 2px solid var(--background-link);
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    flex: 1 0 0;
+
+}
+.previous-month{
+    border-bottom-left-radius: 1em;
+}
+.next-month{
+    border-bottom-right-radius: 1em;
+}
+.calendar{
+    flex: 15 0 0 ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.1em;
+}
+.day-name{
+    width: 14%;
+    text-align: center;
+    color: white;
+    background-color: var(--background-link);
+}
+.day-name p {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.day{
+    width: 14%;
+    text-align: center;
+    color: white;
+    background-color: var(--background-link);
+    border-radius: 0.2em;
+}
+.day p {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.day.avaible:hover{
+    background-color: rgb(173, 233, 173);
+}
+
+.avaible{
+    background-color: rgb(141 208 141);
+}
+.unavaible{
+    background-color: rgba(227, 119, 119, 0.725);
+    cursor: default;
+}
+.today{
+    background-color: rgba(162, 196, 30, 0.725);
+}
+.irregular{
+    color: transparent;
+    background-color: var(--background-link);
+}
+.select{
+    background-color:rgb(0 137 233);
+}
+.reservation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+.reservation p {
+    font-size: 1.2em;
+    font-weight: 600;
+    font-style: italic;
+}

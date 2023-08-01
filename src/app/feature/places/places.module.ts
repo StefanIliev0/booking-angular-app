@@ -7,6 +7,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PlacesRouterModule } from './places-router.module';
 import { FormsModule } from '@angular/forms';
 import { PlaceService } from './place.service';
+import { DetailsComponent } from './details/details.component';
+import { SmallMediaComponent } from './details/small-media/small-media.component';
+import { RateComponent } from './details/rate/rate.component';
+import { OwnerInfoComponent } from './details/owner-info/owner-info.component';
+import { ReservationComponent } from './details/reservation/reservation.component';
+import { CommentsComponent } from './details/comments/comments.component';
+import { EditPlaceComponent } from './edit-place/edit-place.component';
 
 
 
@@ -14,7 +21,15 @@ import { PlaceService } from './place.service';
   declarations: [
     HolydayTipsComponent,
     WorkTripsComponent,
-    AddPlaceComponent ],
+    AddPlaceComponent,
+    DetailsComponent,
+    SmallMediaComponent,
+    RateComponent,
+    OwnerInfoComponent,
+    ReservationComponent,
+    CommentsComponent,
+    EditPlaceComponent,
+   ],
   imports: [
     PlacesRouterModule,
     CommonModule,

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlaceService } from '../place.service';
 import { Place_short } from 'src/app/types/Place_short';
-import { Store } from '@ngrx/store';
-import { selectLocation, selectPrice } from 'src/app/store/find.selectors';
+import { Subscription } from 'rxjs';
 
 
 type workResp = {
@@ -15,37 +14,41 @@ type workResp = {
   templateUrl: './work-trips.component.html',
   styleUrls: ['./work-trips.component.css']
 })
-export class WorkTripsComponent implements OnInit {
+export class WorkTripsComponent implements OnInit,OnDestroy {
   colection:Place_short[] = []; 
   page = 1;
   location = '';
   price = '';
   maxPage = 1;
-  constructor( private service : PlaceService , private store : Store){
-    store.select(selectLocation).subscribe(res => {
-      if(this.location != res){
+  $workPlaces : Subscription = new Subscription; 
+  $location : Subscription = new Subscription; 
+  $prise : Subscription = new Subscription; 
+  constructor( private service : PlaceService ){
+    
+    this.$location  =  this.service.getLocation().subscribe(res => {
+    if(this.location != res){
       this.location = res;
-         this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
+      this.$workPlaces = this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
         let response = res as workResp ; 
-        this.colection = service.getBooks(response.colection)
+        this.colection = service.getUserBooks(response.colection)
         this.maxPage = Math.ceil( response.colectionLength / 6) ; 
       })}
     })
-    store.select(selectPrice).subscribe(res => {
+    this.$prise = service.getPrice().subscribe(res => {
       if(this.price != res){
       this.price = res;
-      this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
+      this.$workPlaces = this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
      const response = res as workResp ; 
-     this.colection = service.getBooks(response.colection)
+     this.colection = service.getUserBooks(response.colection)
      this.maxPage = Math.ceil( response.colectionLength / 6) ; 
    })}
     })
   }
   replacePage(num :number){
    this.page = num; 
-   this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
+   this.$workPlaces = this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
     const response = res as workResp ; 
-    this.colection = this.service.getBooks(response.colection)
+    this.colection = this.service.getUserBooks(response.colection)
     this.maxPage = Math.ceil( response.colectionLength / 6) ; 
   })
   }
@@ -53,11 +56,16 @@ export class WorkTripsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
+    this.$workPlaces = this.service.getWorkPlaces(this.page ,this.location,this.price).subscribe(res  => {
      const response = res as workResp;
-     this.colection = this.service.getBooks(response.colection)
+     this.colection = this.service.getUserBooks(response.colection)
      this.maxPage = Math.ceil( response.colectionLength / 6) ; 
     })
-  
+  }
+
+  ngOnDestroy(): void {
+    this.$location.unsubscribe();
+    this.$prise.unsubscribe();
+    this.$workPlaces.unsubscribe();
   }
 }

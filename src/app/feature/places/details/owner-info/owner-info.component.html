@@ -1,0 +1,41 @@
+<div class="owner-info-container">
+<ng-container *ngIf="!isOwner">
+<h4>Owner info</h4>
+<div class="media">
+    <p>Nickname : {{owner.nickname}}</p>
+    <div class="profilePic">
+    <ng-container *ngIf="!!owner.profilePicture">
+        <img src="{{owner.profilePicture}}" alt="Profile">
+    </ng-container>
+    <ng-container *ngIf="!owner.profilePicture">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+    </ng-container>
+    </div>
+</div>
+<ng-container *ngIf="!!owner.about">
+<p>About me : {{owner.about}}</p>    
+</ng-container>
+<ng-container *ngIf="!owner.about">
+    <p class="no-info">This user has not yet provided information about himself.</p>    
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="isOwner">
+    <ng-container *ngIf="!removeplace">
+    <div class="buttons">
+        <app-link [text]="'Edit'" [path]="'/places/' + PlaceId + '/edit'" />
+        <app-button [text]="'Delete'" (newEvent)="askForRemove()" />
+    </div>
+    <p>Next reservation.</p>
+    <p class="next-book" *ngIf="nextBook[0]?.user">Next reservation for you place is from {{nextBook[0].from}} to {{nextBook[0].to}}</p>
+    <p class="no-info" *ngIf="!nextBook[0]?.user">Sorry, but no have reservation for this place.</p>
+    </ng-container>
+    <ng-container *ngIf="removeplace">
+   <p class="no-info" >Are you sure you want to remove this location?</p>
+   <div class="buttons">
+    <app-button [text]="'YES!'" (newEvent)="removeThisPlace()" />
+    <app-button [text]="'NO!'" (newEvent)="refuse()" />
+</div>
+   </ng-container>
+</ng-container>
+
+</div>

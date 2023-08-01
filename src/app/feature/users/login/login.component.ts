@@ -26,6 +26,7 @@ async login(form : NgForm){
   this.service.loginUser(form.value["username"], form.value["password"]).subscribe({
     next :(value) => {
     const user = value as User;
+    console.log(user)
     this.store.dispatch(UsersActions.add({user}));
     this.service.addUserToLS(user);
     this.router.navigate(['/']);

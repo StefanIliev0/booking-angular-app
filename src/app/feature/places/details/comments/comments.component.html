@@ -1,0 +1,27 @@
+<div class="comment-container">
+    <h4>Comments</h4>
+    <div class="comments">
+        <p *ngIf="curComments.length == 0" class="message">Sorry but this place haven`t comments yet.</p>
+        <ng-container *ngIf="curComments.length > 0">
+            <app-pagination  [num]="currentPage" [maxPage]="maxPage" (newEvent)="changePage($event)"/>
+            <div class="comment-box" *ngFor="let com of curComments">
+                <div class="text-box">
+                    <p class="nickname">{{com.user.userNickname}} : </p>
+                    <p class="comment-text">{{com.comment}}</p> 
+                </div>
+                <div class="button-box" *ngIf="com.user.userID == userID">
+                    <app-button [text]="'Edit'" (newEvent)="editComment(com._id , com.comment )" />
+                    <app-button [text]="'Delete'" (newEvent)="deleteComment(com._id)"/>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="new-comment-container" *ngIf="!!userID">
+        <label for="new-comment">New comment</label>
+        <div class="text-container">
+         <textarea name="newComment" id="new-comment" #newComment></textarea>    
+         <app-button [text]="'Add Comment'"  (newEvent)="addComment()"/>
+        </div>
+    </div>
+
+</div>

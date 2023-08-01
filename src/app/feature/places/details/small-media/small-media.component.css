@@ -1,0 +1,61 @@
+/* .container{
+    border: 1px solid black;
+    max-width: 600px;
+    min-width: 300px;
+    height: 500px;
+    margin:  2em;
+} */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    min-width: 300px;
+    gap: 1em;
+}
+.activePic{
+    display: flex;
+    width: 100%;
+    height: 300px;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: 0.3em -0.3em 0.4em 0 rgba(0,0,0,0.5);
+}
+.otherPics{
+    display: flex;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    gap: 0.5em;
+    border: 0.4em solid var( --background-link);
+    box-shadow: 0.2em -0.2em 0.4em 0 var( --background-link);
+    border-radius: 0.7em;
+    padding: 1em;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-base-color: red;
+    
+}
+::-webkit-scrollbar {
+    height:10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var( --background-link); 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var( --background-link); 
+    border-radius: 20px;
+  }
+.inactivePic{
+    flex: 0 0 150px;
+    width: 150px;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+

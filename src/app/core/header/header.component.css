@@ -9,7 +9,7 @@ header{
 }
 .nav-ul, .user-info-ul{
     gap: 2em;
-    margin-block: 1em;
+    /* margin-block: 1em; */
 }
 .user-info-ul{
     margin-left: auto;

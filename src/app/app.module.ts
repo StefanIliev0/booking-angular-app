@@ -19,6 +19,7 @@ import { FindReducer } from './store/find.reducer';
 
 import { authInterseptorProvider } from './interceptors/auth.interseptor';
 import { UserService } from './feature/users/user-service.service';
+import { placeReducer } from './store/place.reducer';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { UserService } from './feature/users/user-service.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({user : userReducer , err :  ErrReducer , find : FindReducer}),
+    StoreModule.forRoot({user : userReducer , err :  ErrReducer , find : FindReducer , place : placeReducer}),
     CoreModule,
     SharedModule,
     PlacesModule,

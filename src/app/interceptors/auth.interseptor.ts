@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor{
       return  next.handle(request).pipe(
         catchError((err) => {
             this.store.dispatch(ErrActions.add({ err : err.error.error})); 
-            console.log(err.error.error);
+            console.log(err);
           return [err];
         })
       )

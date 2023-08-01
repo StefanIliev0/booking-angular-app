@@ -2,7 +2,7 @@
 <div class="banner">
     <h1>Book your Place</h1>
     <p class="sub-title">Or add your place for reservation</p>
-    <app-link  [text]="'Let`s begin'" [path]="'/login'"/>
+    <app-link  [text]="'Let`s begin'" [path]="!isAuth ? 'login'  : 'holiday-trips/list' "/>
 </div>
 <div class="card-container">
     <article class="card">
@@ -34,7 +34,7 @@
         <div class="description">
             <h4>Add your place in our platform</h4>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas assumenda ipsum veritatis aliquam obcaecati tempore laboriosam quae ea repellendus. Sed, ducimus? Dolores modi consectetur voluptatum atque illum animi dignissimos fugiat.</p>
-            <app-link  [text]="'Add'" [path]="'add-place'"/>
+            <app-link  [text]="'Add'" [path]="isAuth ? 'add-place' : 'login' "/>
         </div>
     </article>
 </div>

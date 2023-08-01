@@ -1,0 +1,36 @@
+<div class="container">
+    <section class="media-section">
+        <article class="images-article">
+            <app-small-media/>
+        </article>
+        <article class="rate-article">
+            <app-rate [placeId]="placeId" [ownerId]="curPlace?.owner?._id || ''"  /> 
+        </article>
+    </section>
+
+    <section class="details-section">
+        <article class="info-article">
+        <p><span>Title :</span>  {{curPlace?.title}}</p>
+        <p><span>Rooms :</span> {{curPlace?.rooms}}</p>
+        <p><span>Description :</span> {{curPlace?.description}}</p>
+        <p><span>Price :</span> {{curPlace?.price}}</p>
+        </article>
+        <article class="facilities-article" > 
+            <div *ngFor="let fac of curFacilities" class="fac-div">
+            <svg role="img"  [attr.viewBox]="fac?.svg?.view" xmlns="http://www.w3.org/2000/svg" height="50" width="50"><path [attr.d]="fac?.svg?.d" ></path></svg>
+            <p>{{fac.text}}</p>
+            </div>
+        </article>
+    </section>
+    <section class="owner-info-section">
+        <app-owner-info [owner]="curPlace?.owner"  [books]="curPlace?.books || []" [PlaceId]="placeId"/>
+    </section>
+    
+    <section class="booking-section" >
+        <app-reservation [isOwner]="isOwner" [placeId]="placeId" [UserId]="userId" />
+    </section>
+    
+    <section class="comments-section">
+        <app-comments [isOwner]="isOwner" [userID]="userId" [placeID]="placeId" />
+    </section>
+</div>
