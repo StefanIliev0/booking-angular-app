@@ -11,5 +11,6 @@ export const UsersActions = createActionGroup({
         "addBook" :   props<{ userBook: UserBook }>(),
         "addPlace" :   props<{ PlaceId: string }>(),
         "removePlace" : props<{ PlaceId: string }>(),
+        "updateUser" : props<{userInfo : {nickname : string , about : string , profilePicture : string}}>(),
         },
     });

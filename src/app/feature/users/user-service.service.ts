@@ -5,7 +5,8 @@ import { BASIC_URI } from 'src/app/constants';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/types/User';
 import { UsersActions } from 'src/app/store/user.actions';
-import { selectIsAuth, selectUserId, selectUserNickname, selectUserPlaces } from 'src/app/store/user.selectors';
+import { selectIsAuth, selectUser, selectUserId, selectUserNickname, selectUserPlaces } from 'src/app/store/user.selectors';
+import { ErrActions } from 'src/app/store/err.actions';
 
 @Injectable({
   providedIn: "any"
@@ -64,5 +65,21 @@ addPlace(PlaceId : string){
 };
 getPlaces(){
   return this.store.select(selectUserPlaces) 
+};
+getUser(){
+  return this.store.select(selectUser)
+}
+editUser (user :{nickname  : string ,about : string ,profilePicture : string , _id : string} ){
+  this.store.dispatch(UsersActions.updateUser({userInfo : user})); 
+  return this.http.patch(`${this.USER_BASIC_URI}/${user._id}/update` ,  user)
+}
+createEditForm (user : User){
+  return {nickname  : user.nickname ,about : user.about ,profilePicture : user.profilePicture}
+}
+addErr(text : string){
+  this.store.dispatch(ErrActions.add({err : text}))
+  setTimeout(() => {
+    this.store.dispatch(ErrActions.remove())
+  },3000)
 }
 }

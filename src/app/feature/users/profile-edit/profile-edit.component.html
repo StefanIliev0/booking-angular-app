@@ -1,0 +1,40 @@
+<div class="container">
+    <form #form="ngForm" (ngSubmit)="edit(form)" class="form">
+        <h1>Edit profile</h1>
+        <label for="nickname">Nickname :</label>
+        <input 
+            type="text"
+            id="nickname"
+            name="nickname"
+            placeholder="Your nickname..."
+            ngModel
+            #nickname="ngModel"
+            required 
+            minlength="3"
+        >
+        <ng-container *ngIf="nickname.touched">
+            <p class="error" *ngIf="nickname.errors?.['required']" > Nickname is required! </p>
+            <p class="error" *ngIf="!!nickname.errors?.['minlength']" > Nickname must be a least 5 characters! </p>
+        </ng-container>
+        <label for="about">About me : </label>
+        <textarea 
+            id="about"
+            name="about"
+            placeholder="About me..."
+            ngModel
+            #about="ngModel"
+            minlength="10"
+        ></textarea> 
+            <label for="profilePicture">Profile picture :</label>
+            <input 
+                type="text" 
+                id="profilePicture"
+                name="profilePicture"
+                ngModel
+                uri
+                #profilePicture="ngModel"
+                >
+        <app-err-message/>
+        <app-button [text]="'Update profile'"  />
+    </form>
+</div>

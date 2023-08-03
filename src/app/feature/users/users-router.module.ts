@@ -4,6 +4,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrPageComponent } from 'src/app/core/err-page/err-page.component';
 import { isntAuthGuard } from 'src/app/guards/isnt-auth.guard';
+import { isAuthGuard } from 'src/app/guards/is-auth.guard';
+import { ProfileDetailsComponent } from './profile-details/profile-details.component';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const routes: Routes = [
     {
@@ -15,6 +18,18 @@ const routes: Routes = [
     path : "register",
     component : RegisterComponent,
     canActivate : [isntAuthGuard()]
+},
+{
+    path : "profile/details",
+    component : ProfileDetailsComponent,
+    pathMatch: "full" ,
+    canActivate : [isAuthGuard()]
+},
+{
+    path : "profile/edit",
+    component : ProfileEditComponent,
+    pathMatch: "full" ,
+    canActivate : [isAuthGuard()]
 },
 {
   path:"**" ,

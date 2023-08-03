@@ -1,0 +1,38 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    margin : 3em auto;
+    background-color: var(--backgroud-module);
+    border-radius: 1em;
+    padding-block: 3em;
+    }
+    textarea {
+        border-radius: 0.5em;
+        padding: 0.5em;
+        min-width: 40em;
+        min-height: 10em;
+        resize: none;
+        border-width: 2px;
+    }
+    
+    input {
+        border-radius: 0.5em;
+        padding: 0.5em;
+        width: 22em;
+    }
+    
+    label{
+        font-size: 1.8em;
+        font-weight: bold;
+        font-style: italic;
+    }
+    h1{
+        color: var(--white);
+        text-shadow: 0 0 10px rgba(0,0, 0, 0.8);
+    }
+    .error {
+        font-size: 1.2em;
+        color: red;
+    }

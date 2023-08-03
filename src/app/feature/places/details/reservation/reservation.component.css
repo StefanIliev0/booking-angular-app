@@ -1,11 +1,4 @@
-/* .booking-section{
-    border: 1px solid black;
-    display: flex;
-    margin: 0 auto;
-    flex: 0 1 800px;
-    max-height: 600px;
-    min-height: 300px;
-} */
+
 .reservation-container {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="profile-info">
+        <h2>My profile</h2>
+        <div class="media">
+            <div class="profilePic">
+            <ng-container *ngIf="!!user?.profilePicture">
+                <img src="{{user.profilePicture}}" alt="Profile">
+            </ng-container>
+            <ng-container *ngIf="!user?.profilePicture">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+            </ng-container>
+            </div>
+            <p>Nickname : {{user.nickname}}</p>
+        </div>
+        <ng-container *ngIf="!!user?.about">
+            <p>About me : {{user.about}}</p>    
+        </ng-container>
+        <ng-container *ngIf="!user?.about">
+            <p class="no-info">Maybe you want to tell others about yourself, now is the time to edit your profile.</p>    
+        </ng-container>
+    </div>
+    <div class="profile-places">
+        <h4>My places</h4>
+        <table *ngIf="user.places.length > 0">
+            <thead>
+                <tr class="place-headers">
+                    <th>Title</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                    <th><div class="shadow-btn"></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="place" *ngFor="let place of user?.places">
+                    <td><p>{{place.title}}</p></td>
+                    <td><p>{{place.location}}</p></td>
+                    <td><p>{{place.price}}</p></td>
+                    <td> 
+                        <div class="real-btn">
+                            <app-link [text]="'Details'" [path]="'/places/' + place._id + '/details'" />
+                            <app-link [text]="'Edit'" [path]="'/places/' + place._id + '/edit'" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="no-info" *ngIf="user.places.length == 0">You haven`t places for now!</p>    
+    </div>
+    <div class="profile-places">
+        <h4>My reservations</h4>
+            <table *ngIf="user.books.length > 0">
+                <thead>
+                    <tr class="place-headers">
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Details for place</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="place" *ngFor="let book of user?.books">
+                        <td><p>{{book.from}}</p></td>
+                        <td><p>{{book.to}}</p></td>
+                        <td> 
+                            <div class="real-btn">
+                                <app-link [text]="'Details'" [path]="'/places/' + book.place + '/details'" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="no-info" *ngIf="user.books.length == 0">You haven`t reservation for now!</p>    
+    </div>
+</div>
