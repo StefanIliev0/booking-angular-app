@@ -16,3 +16,6 @@ app-header ,app-footer {
 app-header{
     margin-bottom: 2em;
 }
+app-err-message{
+    margin: 0 auto;
+}

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/feature/users/user-service.service';
-import { UsersActions } from 'src/app/store/user.actions';
 import { selectIsAuth, selectUserId } from 'src/app/store/user.selectors';
 import { User } from 'src/app/types/User';
 

@@ -38,6 +38,7 @@ export class EditPlaceComponent implements OnDestroy,OnInit  {
     async edit (form : NgForm ){
   
       if(form.invalid ){
+        this.userService.addErr("Sorry , but something in your fields isn't right.");
        return
       }
   

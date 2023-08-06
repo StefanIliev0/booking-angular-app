@@ -20,3 +20,7 @@ export const selectComments = createSelector(
   selectPlace,
 (place) => place.comments
 );
+export const selectOwnerId = createSelector(
+  selectPlace,
+(place) => place.owner._id
+);

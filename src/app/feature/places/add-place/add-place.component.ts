@@ -31,6 +31,7 @@ $newPlace :Subscription = new Subscription;
   async create (form : NgForm ){
 
     if(form.invalid ){
+      this.userService.addErr("Sorry , but something in your fields isn't right.");
      return
     }
     this.$newPlace = this.service.createPlace(form).subscribe(res => {

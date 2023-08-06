@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    margin-block: 1em;
+    padding: 2em;
+    border-radius: 1em;
+    background-color:var(--backgroud-module);
+}
+textarea {
+    border-radius: 0.5em;
+    padding: 0.5em;
+    min-width: 40em;
+    min-height: 10em;
+    resize: none;
+    border-width: 2px;
+}
+label{
+    font-size: 1.8em;
+    font-weight: bold;
+    font-style: italic;
+}
+.message-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2em;
+    padding-inline: 6em;
+    align-items: center;
+}
+.message{
+    border: 3px solid white;
+    border-radius: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2em;
+    padding: 0.8em;
+    max-width: 50%;
+}
+.from{
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.mes{
+    font-weight: 600;
+    font-style: italic;
+}
+.me{
+    align-self: flex-start;
+    justify-content: flex-start;
+}
+.notMe{
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+.loadMore { 
+    color: rgba(0, 0, 0, 0.427);
+    cursor: pointer;
+}
+.btn-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 2em;
+}
+.approval-container p {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.deleted{
+    background-color: rgba(227, 119, 119, 0.725);
+}

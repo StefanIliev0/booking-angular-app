@@ -20,13 +20,13 @@ constructor(private service : UserService , private  store : Store<{user : User}
 async login(form : NgForm){
 
   if(form.invalid ){
+    this.service.addErr("Sorry , but something in your fields isn't right.");
    return
   }
  
   this.service.loginUser(form.value["username"], form.value["password"]).subscribe({
     next :(value) => {
     const user = value as User;
-    console.log(user)
     this.store.dispatch(UsersActions.add({user}));
     this.service.addUserToLS(user);
     this.router.navigate(['/']);

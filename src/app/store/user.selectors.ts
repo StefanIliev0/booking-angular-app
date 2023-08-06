@@ -36,3 +36,7 @@ export const selectUserPlaces = createSelector(
   selectUser,
 (user) =>     user.places
 );
+export const selectUserMessages = createSelector(
+  selectUser,
+(user) =>     user.mesages
+);

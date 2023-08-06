@@ -27,7 +27,7 @@ export class ProfileEditComponent implements OnDestroy,OnInit  {
   
       if(form.invalid ){
         
-        this.userService.addErr("Sorry , but sometingth in your fields isn`t right.");
+        this.userService.addErr("Sorry , but something in your fields isn't right.");
        return
       }
   

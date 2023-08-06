@@ -21,6 +21,7 @@ constructor(private service : UserService , private  store : Store<{user : User 
  async register(form : NgForm){
 
  if(form.invalid || form.value["password"] !== form.value["repeatPassword"]){
+  this.service.addErr("Sorry , but something in your fields isn't right.");
   return
  }
 

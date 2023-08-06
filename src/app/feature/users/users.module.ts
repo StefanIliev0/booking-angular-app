@@ -10,6 +10,8 @@ import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { MessageListComponent } from './message-list/message-list.component';
+import { MessageComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     RegisterComponent,
     ProfileDetailsComponent,
     ProfileEditComponent,
+    MessageListComponent, 
+    MessageComponent
   ],
   imports: [
     CommonModule,

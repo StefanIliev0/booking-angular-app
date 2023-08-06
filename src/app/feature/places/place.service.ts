@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { BASIC_URI, FASILITIES, Months } from 'src/app/constants';
 import { selectLocation, selectPrice } from 'src/app/store/find.selectors';
 import { PlaceActions } from 'src/app/store/place.actions';
-import { selectBooks, selectComments, selectPics, selectRate } from 'src/app/store/place.selector';
+import { selectBooks, selectComments, selectOwnerId, selectPics, selectRate } from 'src/app/store/place.selector';
 import { selectUserBooks } from 'src/app/store/user.selectors';
 import { Book } from 'src/app/types/Book';
 import { Day, selectDay } from 'src/app/types/Day';
@@ -155,6 +155,9 @@ getPics(){
 getRate(){
   return this.store.select(selectRate)
 }
+getOwnerId(){
+  return this.store.select(selectOwnerId)
+}
 addRate(rate : Rate , placeID : string){
   let add : Subscription = new Subscription; 
   add = this.http.post(`${this.PLACE_BASIC_URI}/${placeID}/addRate` , {rate : rate.rate}).subscribe(x => {
@@ -299,13 +302,14 @@ return x
 })
 return thisDays
 }
-makeBook(from : string , to : string , placeID : string ){
-  let user = ''
+makeBook(from : string , to : string , placeID : string , userId? : string ){
+  let user = userId ||  ''; 
   let $user  : Subscription = new Subscription ;
   let $Req : Subscription = new Subscription ;
+  if(!userId){
   $user =  this.userService.getUserId().subscribe(x => {
     user = x ;
-  } )
+  } )}
   const book : Book = {from ,to , user } 
 $Req = this.http.post(`${this.PLACE_BASIC_URI}/${placeID}/makeBook` , {book}).subscribe(x => { 
   if($Req.closed){

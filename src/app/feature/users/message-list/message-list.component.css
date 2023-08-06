@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    margin-block: 1em;
+    padding: 2em;
+    border-radius: 1em;
+    background-color:var(--backgroud-module);
+}
+.message{
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    border: 3px solid white;
+    border-radius: 0.8em;
+    padding: 0.5em 1em;
+    font-size: 1.4em;
+    font-weight: 600;
+    cursor: pointer;
+}
+.nickname , .place { 
+    font-style: italic;
+}
+p.new {
+    margin-left: auto;
+}
+.red { 
+    color: rgba(227, 119, 119, 0.725);
+}

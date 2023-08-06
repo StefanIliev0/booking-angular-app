@@ -14,6 +14,7 @@ export class ReservationComponent implements OnInit,OnDestroy {
 @Input() isOwner : boolean  = false; 
 @Input() UserId : string  = ""; 
 @Input() placeId : string = "";
+@Input() title : string = "";
 books :Book[] = []
 thisMounth = new Date().getMonth() ;
 currentMoth = ""
@@ -22,7 +23,9 @@ currentMonthArr : Day[] = [];
 startResDay : selectDay  = { day : 0 , month : 0,year : 0};
 endResDay : selectDay = { day : 0 , month : 0,year : 0};
 $books : Subscription = new Subscription();
-
+$ownerId : Subscription = new Subscription();
+ownerId : string = "";
+isBook : boolean = false
 
 constructor(private placeService : PlaceService , private userServise : UserService){}
 
@@ -47,6 +50,7 @@ nextMonth(){
   this.currentMonthArr = this.placeService.addBookDays(this.currentMonthArr  , this.startResDay, this.endResDay , this.thisMounth , this.year)
 }
 setResDate(day : Day){
+  if(!this.isBook){
   //check if resDay is set
 if(this.startResDay.day == 0){
   this.startResDay = { day : day.date , month :this.thisMounth,year : this.year};
@@ -73,17 +77,23 @@ if(this.startResDay.day !== 0 && this.startResDay.day == this.endResDay.day && t
 }
 
 this.currentMonthArr = this.placeService.addBookDays(this.currentMonthArr  , this.startResDay, this.endResDay , this.thisMounth , this.year)
-}
+}}
 makeBook(){
   let from = `${this.startResDay.year}-${this.startResDay.month < 10 ? '0'+ (this.startResDay.month + 1) : this.startResDay.month +1 }-${this.startResDay.day < 10 ? '0'+ (this.startResDay.day  ) : this.startResDay.day  }`
   let to = `${this.endResDay.year}-${this.endResDay.month < 10 ? '0'+ (this.endResDay.month + 1 ): this.endResDay.month + 1 }-${this.endResDay.day < 10 ? '0'+ (this.endResDay.day ) : this.endResDay.day }`
-  
-  
+
   this.placeService.makeBook(from,to , this.placeId );
   this.startResDay  = { day : 0 , month : 0,year : 0};
   this.endResDay  = { day : 0 , month : 0,year : 0};
   this.currentMonthArr  = this.placeService.getThisMonthArr(this.books , this.thisMounth , this.year) ;
   this.currentMoth = this.placeService.getMonth(this.thisMounth);
+}
+makeRequest(){
+  let from = `${this.startResDay.year}-${this.startResDay.month < 10 ? '0'+ (this.startResDay.month + 1) : this.startResDay.month +1 }-${this.startResDay.day < 10 ? '0'+ (this.startResDay.day  ) : this.startResDay.day  }`
+  let to = `${this.endResDay.year}-${this.endResDay.month < 10 ? '0'+ (this.endResDay.month + 1 ): this.endResDay.month + 1 }-${this.endResDay.day < 10 ? '0'+ (this.endResDay.day ) : this.endResDay.day }`
+
+  this.userServise.addConversation( this.ownerId , from , to, this.placeId  , this.title );
+  this.isBook = true ; 
 }
 ngOnInit(): void {
   this.$books = this.placeService.getBooks().subscribe(x => {
@@ -91,9 +101,13 @@ ngOnInit(): void {
   })
   this.currentMonthArr  = this.placeService.getThisMonthArr(this.books , this.thisMounth , this.year) ;
   this.currentMoth = this.placeService.getMonth(this.thisMounth);
+  this.$ownerId = this.placeService.getOwnerId().subscribe(x => {
+    this.ownerId = x ;
+  })
 }
 ngOnDestroy(): void {
   this.$books.unsubscribe(); 
+  this.$ownerId.unsubscribe();
 }
 
 }

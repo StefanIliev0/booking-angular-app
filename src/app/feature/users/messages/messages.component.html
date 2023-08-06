@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="approval-container" *ngIf="!isApproval && isOwner">
+        <p>This user wish to reserve your place from {{forPlace.from}} to {{forPlace.to}} </p>
+        <div class="btn-container">
+            <app-button [text]="'Approve'" (newEvent)="approveBook()" />
+            <app-button [text]="'Unaprove'" (newEvent)="unAproveBook()"/>
+        </div>
+    </div>
+    <div  class="control-container"  *ngIf="isApproval || !isOwner">
+        <app-button [text]="'Delete conversation '" (newEvent)="unAproveBook()"/>
+    </div>
+    <div class="message-container">
+            <p class="loadMore" (click)="incrementNum()" *ngIf="this.messagesItem.length > this.num * 6">load more messages... </p>
+        <div class="message" *ngFor="let message of viewMessages" [ngClass]="{'me' : message.user == userId  , 'notMe' : message.user != userId, 'deleted' : message.mesage == 'Other user delete this conversation.'}" >
+            <p class="from">{{message.user == userId ? "Me" : otherUserNickname }} : </p>
+            <p class="mes">{{message.mesage}}</p>
+        </div>
+    </div>
+    <label for="newNessage">New message:</label>
+    <textarea 
+        id="newNessage"
+        name="newNessage"
+        placeholder="Write new message here..."
+        #newNessage
+    ></textarea> 
+    <app-button [text]="'Send'" (newEvent)="sendMessage(newNessage.value)" />
+</div>

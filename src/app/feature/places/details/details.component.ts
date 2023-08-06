@@ -17,7 +17,7 @@ import { PlaceService } from '../place.service';
 export class DetailsComponent implements OnInit ,OnDestroy{
   isAuth = false;
   userId = '';
-  curPlace? : Place;
+  curPlace! : Place;
   facilities :{fname : string , text : string , svg : {d : string , view : string}}[] = FASILITIES; 
   curFacilities :{fname : string , text : string , svg : {d : string , view : string}}[] = [] ; 
   placeId : string = "";
