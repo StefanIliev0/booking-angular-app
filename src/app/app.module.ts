@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import {StoreModule} from "@ngrx/store"; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { CoreModule } from './core/core.module';
@@ -29,6 +30,7 @@ import { placeReducer } from './store/place.reducer';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({user : userReducer , err :  ErrReducer , find : FindReducer , place : placeReducer}),

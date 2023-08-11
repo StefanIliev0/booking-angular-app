@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { placeResolver } from './place.resolver';
 import { EditPlaceComponent } from './edit-place/edit-place.component';
 import { isOwnerGuard } from 'src/app/guards/is-owner.guard';
+import { ErrPageComponent } from 'src/app/core/err-page/err-page.component';
 
 const routes: Routes = [
     {
@@ -33,7 +34,12 @@ const routes: Routes = [
     component :EditPlaceComponent, 
     resolve : {place : placeResolver},
     canActivate : [isAuthGuard() , isOwnerGuard()]
-}
+},
+{
+      path:"**" ,
+      pathMatch: "full" ,
+      component : ErrPageComponent
+    }
 ];
 
 @NgModule({

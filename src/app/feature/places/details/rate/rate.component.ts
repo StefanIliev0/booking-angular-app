@@ -38,7 +38,7 @@ setRating(){
   this.$rate = this.plaseService.getRate().subscribe(y =>{
     this.stars = [];
     this.rate = 0; 
-    y.forEach(x => {
+    y?.forEach(x => {
       this.rate = this.rate + x.rate ;
       if( (this.userId && x.user === this.userId)){
         this.isVoted = true; 

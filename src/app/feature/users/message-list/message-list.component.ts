@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../user-service.service';
 import { Subscription } from 'rxjs';
 import { Mesage } from 'src/app/types/Mesage';
@@ -9,7 +9,7 @@ import {  Router } from '@angular/router';
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.css']
 })
-export class MessageListComponent implements OnDestroy {
+export class MessageListComponent implements OnInit, OnDestroy {
 $messages : Subscription = new Subscription;
 messages : Mesage[] = [];
 $userId : Subscription = new Subscription;
@@ -26,7 +26,7 @@ constructor(private userService : UserService , private router : Router){
 
 getNickcname(participants : {id : string , nickname : string}[]){
   let nickname = '';
-  participants.forEach(x => {
+  participants?.forEach(x => {
     if(x.id !== this.userId){
       nickname = x.nickname;
     }
@@ -36,7 +36,7 @@ getNickcname(participants : {id : string , nickname : string}[]){
 
 getIsHaveNewMessages(messages : {read : boolean , user : string , mesage : string }[]){
 let isNewM = 0; 
-messages.forEach(x => {
+messages?.forEach(x => {
   if( !x.read && x.user != this.userId){
     isNewM += 1; 
   }
@@ -53,7 +53,9 @@ needApproval(aproval : {approve : boolean , unapprove : boolean}){
 goToMessage(messageId : string){
   this.router.navigate(['/profile','messages',messageId]);
 }
-
+ngOnInit(): void {
+ 
+}
 ngOnDestroy(): void {
   this.$messages.unsubscribe();
   this.$userId.unsubscribe();

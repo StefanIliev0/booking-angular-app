@@ -39,11 +39,12 @@ const routes: Routes = [
     component : MessageComponent,
     pathMatch: "full" ,
     canActivate : [isAuthGuard()]
-},{
-  path:"**" ,
-  pathMatch: "full" ,
-  component : ErrPageComponent
-}
+},
+// {
+//   path:"**" ,
+//   pathMatch: "full" ,
+//   component : ErrPageComponent
+// }
 ];
 
 @NgModule({

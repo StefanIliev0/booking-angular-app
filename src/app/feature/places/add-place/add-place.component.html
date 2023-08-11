@@ -92,6 +92,16 @@
                     >
             </div>
         </div>
+        <div class="selectImageMethod">
+            <label for="isUrl ">I have URI path for my photos.</label>
+            <input 
+                (change)="changeGetPictureMethod()"
+                type="checkbox" 
+                id=isUrl
+                #isURI
+                >
+        </div>
+        <ng-container *ngIf="isUri">
             <div class="img-container" *ngFor="let item of picItems ; index as i">
                 <label for="img{{item}}">Image</label>
                 <input 
@@ -104,7 +114,12 @@
                     minlength=""
                     (blur)="addPicField(item)"
                     >
+                    <img class="previewPicture" *ngIf="images[item - 1]" src="{{images[item - 1]}}" alt="something">
             </div>
+        </ng-container>
+        <ng-container *ngIf="!isUri">
+            <app-upload-pictures  (getFiles)="setFiles($event)"/>
+        </ng-container>
             <app-err-message/>
         <app-button [text]="'Make it'"  />
     </form>

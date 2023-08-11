@@ -7,7 +7,7 @@
         <ng-container *ngIf="needApproval(message.approval)">
             <p class="new red">This book is need aplroval! </p>
         </ng-container>
-        <ng-container *ngIf="!needApproval(message.approval)">
+        <ng-container *ngIf="!(needApproval(message.approval))">
             <p class="new" *ngIf="getIsHaveNewMessages(message.mesages) > 0">You have {{getIsHaveNewMessages(message.mesages)}}</p>
             <p class="new red" *ngIf="getIsHaveNewMessages(message.mesages) == 0">You don`t have new messages.</p>
         </ng-container>

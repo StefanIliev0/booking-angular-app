@@ -12,6 +12,7 @@ import { ProfileDetailsComponent } from './profile-details/profile-details.compo
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { MessageListComponent } from './message-list/message-list.component';
 import { MessageComponent } from './messages/messages.component';
+import { UserControlComponent } from './user-control/user-control.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MessageComponent } from './messages/messages.component';
     ProfileDetailsComponent,
     ProfileEditComponent,
     MessageListComponent, 
-    MessageComponent
+    MessageComponent,
+    UserControlComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { MessageComponent } from './messages/messages.component';
   ],
   exports: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserControlComponent,
   ],
   providers :[UserService],
 })

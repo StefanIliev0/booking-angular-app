@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserService } from '../feature/users/user-service.service';
 import { ErrPageComponent } from './err-page/err-page.component';
+import { UsersModule } from '../feature/users/users.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ErrPageComponent } from './err-page/err-page.component';
   imports: [
     CommonModule,
     SharedModule,
+    UsersModule,
   ],
   providers :[UserService],
   exports: [

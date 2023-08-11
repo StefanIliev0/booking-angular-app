@@ -34,20 +34,35 @@ PLACE_BASIC_URI : string= `${BASIC_URI}/places`
 constructor(private http  : HttpClient , private store : Store<{place : Place ,user : User}>, private router : Router , private userService : UserService) { };
 
 
-createPlace(form : NgForm){
+async createPlace(form : NgForm , files : File[]){
+  let req$ : Subscription = new Subscription; 
   let facilities : string[] = []; 
   let images : string[] = []; 
-
-  FASILITIES.forEach(x => {
+  let thisFiles : File[]  = [...files] ;
+  FASILITIES?.forEach(x => {
     if(!!form.value?.[x.fname]){
       facilities.push(x.fname); 
     }
   })
-  Object.keys(form.value).forEach((x)=> {
+
+  if(thisFiles.length == 0){
+  Object.keys(form.value)?.forEach((x)=> {
     if(x.startsWith("img") && !!form.value[x]){
       images.push(form.value[x]);
-    }
-  })
+    };})}
+  if( thisFiles.length > 0 ){
+    thisFiles?.forEach(  x => {
+          const formData = new FormData();
+          formData.append('image', x);
+          console.log(x)
+      req$ =   this.http.post(`${BASIC_URI}/images/${x.name}`, formData).subscribe(y => {
+        images.push(y.toString())
+        console.log("image req : " ,y)
+        req$.unsubscribe()
+        })
+    })
+  }
+  
   const newPlace  =  {
     title  : form.value.title  ,
     description : form.value.description , 
@@ -58,18 +73,20 @@ createPlace(form : NgForm){
     rooms : form.value.rooms , 
     images : images
   } 
-  return this.http.post(`${this.PLACE_BASIC_URI}/create` , newPlace)
+  console.log(newPlace)
+  // return this.http.post(`${this.PLACE_BASIC_URI}/create` , newPlace)
+  return true
 }
 editPlace(form :NgForm , placeID : string ){
   let facilities : string[] = []; 
   let images : string[] = []; 
 
-  FASILITIES.forEach(x => {
+  FASILITIES?.forEach(x => {
     if(!!form.value?.[x.fname]){
       facilities.push(x.fname); 
     }
   })
-  Object.keys(form.value).forEach((x)=> {
+  Object.keys(form.value)?.forEach((x)=> {
     if(x.startsWith("img") && !!form.value[x]){
       images.push(form.value[x]);
     }
@@ -111,7 +128,7 @@ getUserBooks (colection : Place_short[]){
   const curr  =   UserBooks.filter(y => y.place == x._id);
   let days = 0 ;
   if(curr.length > 0){
-     curr.forEach(z => {
+     curr?.forEach(z => {
       const furstDate : Date = new Date(z.from);
       const secondDate : Date = new Date(z.to);
       const differenceInDays = (Number(secondDate) - Number(furstDate)) / (1000 * 60 * 60 * 24 ) 
@@ -173,7 +190,7 @@ getFurstBook(books : Book[]) : Book[] {
     return books; 
   }else {
     let currDate = new Date();
-    books.forEach(x => {
+    books?.forEach(x => {
       if( (Number(new Date(x.from)) > Number(currDate)) && (Number(new Date(x.from)) < Number(new Date(nextBook.from)))){
         nextBook = x;
       }})
@@ -187,7 +204,7 @@ let currentMounthArr = this.generateMonth(month , year);
 if(books.length == 0){
  return currentMounthArr;
 }
-books.forEach(x => {
+books?.forEach(x => {
   let currFromDate = new Date(x.from);
   let currToDate = new Date(x.to); 
 if(currFromDate.getFullYear() == year || currToDate.getFullYear() == year){
@@ -272,7 +289,7 @@ checkIsFree(books : Book[]  , startResDay : selectDay, endResDay : selectDay){
   let startWishDay = new Date(startResDay.year, startResDay.month , startResDay.day);
   let endtWishDay = new Date(endResDay.year, endResDay.month , endResDay.day);
   let isFree = true;
-books.forEach(x => {
+books?.forEach(x => {
   let fromDate = new Date(x.from);
   let toDate = new Date(x.to);
     if(Number(fromDate) > Number(startWishDay) && Number(toDate) < Number(endtWishDay)){
@@ -311,13 +328,11 @@ makeBook(from : string , to : string , placeID : string , userId? : string ){
     user = x ;
   } )}
   const book : Book = {from ,to , user } 
-$Req = this.http.post(`${this.PLACE_BASIC_URI}/${placeID}/makeBook` , {book}).subscribe(x => { 
+$Req = this.http.post(`${this.PLACE_BASIC_URI}/${placeID}/makeBook` , {book , userId : user }).subscribe(x => { 
   if($Req.closed){
     $Req.unsubscribe();
   }
 }) 
-this.store.dispatch(UsersActions.addBook({ userBook : {from : book.from , to : book.to , place : placeID}}));
-this.store.dispatch (PlaceActions.addBook({book}));
 
 if($user.closed){
       $user.unsubscribe();
@@ -379,12 +394,12 @@ currForm.price = place.price;
 currForm.description = place.description;
 currForm.location = place.location;
 currForm.rooms = place.rooms;
-FASILITIES.forEach(x => {
+FASILITIES?.forEach(x => {
   if(place.facilities.find(y => y == x.fname)){
   currForm = {...currForm , [x.fname] : true }
   }
 })
-place.images.forEach((x,i)=>{
+place.images?.forEach((x,i)=>{
   let curString = `img-${i + 1}`
 currForm = {...currForm , [curString] : x}
 })

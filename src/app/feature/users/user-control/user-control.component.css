@@ -1,0 +1,40 @@
+.container{
+    position: relative;
+    display: flex;
+    width: 15em;
+}
+.path-container{
+    position: absolute;
+    left: 0em;
+    top: 100%;
+    display: block;
+    width: 8em;
+}
+.path-container div{
+    cursor: pointer;
+    background-color: var(--background-link);
+    padding: 0.5em;
+    border: 3px solid white;
+    border-radius: 0.5em;
+    margin: 0.5em auto;
+}
+.path-container p {
+    margin: 0 auto;
+}
+.messages{
+    position: relative;
+}
+.newMessages{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    border-radius: 50%;
+    background-color: rgba(227, 119, 119, 0.725);
+    margin: 10px;
+    padding: 5px 10px;
+    height: 35px;
+    width: 35px;
+    font-weight: 800;
+    border: 2px solid white;
+}

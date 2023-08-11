@@ -100,10 +100,16 @@ this.store.dispatch(UsersActions.addConv({message : req[1]}));
   })}
 removeConversation(convId : string){
     let $req :Subscription = new Subscription;
-    $req = this.http.delete(`${this.USER_BASIC_URI}/messagees/${convId}`).subscribe(x => {
+    $req = this.http.delete(`${this.USER_BASIC_URI}/messages/${convId}`).subscribe(x => {
         $req.unsubscribe();
     })
   }
+aproveBook(userOneId : string , userTwoId : string, conversationId : string){
+  let $req :Subscription = new Subscription;
+  $req = this.http.patch(`${this.USER_BASIC_URI}/messages/${conversationId}/approve` , { userOneId , userTwoId}).subscribe(x => {
+      $req.unsubscribe();
+  })
+}
 sendMessage(text : string , messageId : string , otherUserId : string , userId : string  ){
 let $req : Subscription = new Subscription;
 $req = this.http.post(`${this.USER_BASIC_URI}/messages/${messageId}` , {text, otherUserId , userId}).subscribe(x => { 
@@ -119,6 +125,21 @@ updateUserData(){
   $req.unsubscribe(); 
   })
 }
-
+readMessages(messageId:string){
+  let $req : Subscription = new Subscription;
+  $req =  this.http.post(`${this.USER_BASIC_URI}/messages/${messageId}/read`, {}).subscribe(x => {
+    this.updateUserData();
+  $req.unsubscribe(); 
+  })
+}
+getNewMessages(messages : Mesage[]){
+  let num = 0 ;
+  messages?.forEach(x => {
+    if(x.mesages.find(y => y.read == false)){
+      num += 1;
+    }
+  })
+  return num
+}
 
 }

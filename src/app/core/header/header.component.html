@@ -18,10 +18,7 @@
             <li><app-link  [text]="'Register'" [path]="'/register'"/></li>
         </ng-container>
         <ng-container *ngIf="isAuth">
-            <app-button [text]="'Logout'" (newEvent)="logout($event)"/>
-            <li><app-link  [text]="'Messages'" [path]="'/profile/messages'"/></li>
-            <!-- <li><app-link  [text]="'Edit profile'" [path]="'/profile/edit'"/></li> -->
-            <!-- <li><app-link  [text]="'My profile'" [path]="'/profile/details'"/></li> -->
+            <app-user-control/>
         </ng-container>
     </ul>
 </div>

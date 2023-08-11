@@ -26,10 +26,10 @@ export class AppComponent  implements OnInit ,OnDestroy {
       this.user[0] = x ;
       this.userService.addUserToLS(this.user[0] as User);
     })
-    if(this.user[0]._id){
+    if(!!this.user[0]._id){
       this.$routerEvent =  this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          if(this.user[0]._id){
+          if(!!this.user[0]._id){
           this.userService.updateUserData()
         }}
       });

@@ -25,5 +25,6 @@ export const userReducer = createReducer(
     let otherMessages = messages.filter(x => x._id != messageId);
     let mess =  {user : userId , mesage : message , read : true }
      return {...state , mesages :[...otherMessages , {...thisMessage , mesages :[...thisMessage.mesages , mess]} ]}}),
-  on(UsersActions.updateUserData , (_state , {mesages , books }) => ({... _state , mesages , books})),
+  on(UsersActions.updateUserData , (_state , {mesages , books }) => ({..._state , mesages , books})),
+
 ); 

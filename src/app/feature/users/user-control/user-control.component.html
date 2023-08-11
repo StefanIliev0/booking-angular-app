@@ -1,0 +1,29 @@
+           <div class="container" (mouseenter)="open()" (mouseleave)="close()">
+            <div class="profile-btn-container">
+                <app-button  [text]="'Profile'"  /> 
+            </div>
+            <div [@openClose]="isShort ? 'open' : 'closed'" class="path-container" >
+                <div  routerLink="/profile/details">
+                    <p>
+                        My profile
+                    </p>
+                </div>
+                <div  routerLink="/profile/edit">
+                    <p>
+                        Edit profile
+                    </p>
+                </div>
+                <div class="messages"  routerLink="/profile/messages">
+                    <p class="newMessages" *ngIf="newMesages > 0">{{newMesages}}</p>
+                    <p>
+                        Messages
+                    </p>
+                </div>
+                <div  (click)="logout()">
+                    <p>
+                        Logout
+                    </p>
+                </div>
+            </div>
+
+           </div>

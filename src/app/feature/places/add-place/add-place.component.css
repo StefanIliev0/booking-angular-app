@@ -75,8 +75,30 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 2em;
     }
+    .img-container input{
+    align-self: center;
+    }
+    .img-container label{
+        align-self: center;
+     }
     .error {
         font-size: 1.2em;
         color: red;
+    }
+    .previewPicture{
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 1em;
+        overflow: hidden;
+    }
+    .selectImageMethod label{
+        font-size: 1.2em;
+    }
+    .selectImageMethod input{
+        width: 20px;
+        height: 20px;
+        margin: 20px;
     }

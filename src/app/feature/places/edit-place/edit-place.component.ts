@@ -50,7 +50,7 @@ export class EditPlaceComponent implements OnDestroy,OnInit  {
     ngOnInit(): void { 
     this.curPlace[0] = this.route.snapshot.data["place"] as Place; 
     this.placeId = this.route.snapshot.paramMap.get('id') || "";
-    this.curPlace[0].images.forEach((x , i ) => {
+    this.curPlace[0].images?.forEach((x , i ) => {
       if( i !== 0 ){
         this.picItems = [...this.picItems , i + 1]
       }

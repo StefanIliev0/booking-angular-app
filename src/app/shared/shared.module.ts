@@ -10,6 +10,7 @@ import { LinkComponent } from './link/link.component';
 import { ButtonComponent } from './button/button.component';
 import { ErrMesageComponent } from './err-mesage/err-mesage.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { UploadPicturesComponent } from './upload-pictures/upload-pictures.component';
 
 
 
@@ -21,6 +22,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     ButtonComponent,
     ErrMesageComponent,
     PaginationComponent,
+    UploadPicturesComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     ButtonComponent,
     ErrMesageComponent,
     PaginationComponent,
+    UploadPicturesComponent,
   ]
 })
 export class SharedModule { }

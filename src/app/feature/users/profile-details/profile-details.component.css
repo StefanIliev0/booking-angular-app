@@ -61,6 +61,7 @@ h4 {
 }
 
 .no-info{
+    align-self: center;
     color: rgba(227, 119, 119, 0.725);
 }
 .profile-places{

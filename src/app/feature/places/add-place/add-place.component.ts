@@ -16,31 +16,49 @@ import { UserService } from '../../users/user-service.service';
 export class AddPlaceComponent implements OnDestroy  {
 $newPlace :Subscription = new Subscription;
 @ViewChild('form') form? : NgForm;
+files : File[] = [] ;  
+isUri : boolean = false; 
 
-    picItems : number[] = [1];
-    fasilities : {fname : string , text : string , svg :{d : string , view : string}}[] = FASILITIES ; 
-  constructor(private service : PlaceService , private router : Router , private userService : UserService){}
+picItems : number[] = [1];
+fasilities : {fname : string , text : string , svg :{d : string , view : string}}[] = FASILITIES ; 
+images : string[] = []; 
+constructor(private service : PlaceService , private router : Router , private userService : UserService){};
 
 
   addPicField(item : number){
     if(this.form?.value?.[`img-${item}`] && item == this.picItems.length){
       this.picItems = [...this.picItems , Number(item) + 1 ]
+      this.images[item - 1] =  this.form?.value?.[`img-${item}`]; 
+    }
+    if(this.form?.value?.[`img-${item}`] == ""){
+      this.picItems = this.picItems.slice(0 , -1);
+      this.images[item - 1] = ""; 
     }
   }
-
+changeGetPictureMethod(){
+  this.isUri = !this.isUri;
+  this.picItems = [1];
+  this.images = [];
+  this.files = [] ; 
+}
   async create (form : NgForm ){
 
     if(form.invalid ){
       this.userService.addErr("Sorry , but something in your fields isn't right.");
      return
     }
-    this.$newPlace = this.service.createPlace(form).subscribe(res => {
-      const newPlace = res as Place; 
-      this.userService.addPlace(newPlace._id);
-      this.router.navigate(['/places', newPlace._id , 'details']);
-    } )
+    this.service.createPlace(form , this.files);
+    // this.$newPlace =
+     await this.service.createPlace(form , this.files)
+    // .subscribe(res => {
+      // const newPlace = res as Place; 
+      // this.userService.addPlace(newPlace._id);
+      // this.router.navigate(['/places', newPlace._id , 'details']);
+    // } )
   }
-
+setFiles(images : File[]){
+  this.files = images;
+}
   ngOnDestroy(): void {
     this.$newPlace.unsubscribe();
   }
