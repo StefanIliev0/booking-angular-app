@@ -560,11 +560,11 @@ Inject from User Service(IsAuth) and return boolean value .
 
 #### Isn`t Autheticated Guard 
 
-Inject from User Service(UserId) , check owner  based on path id  and return boolean value .
+Inject from User Service(IsAuth) and return boolean value . 
 
 #### Is Owner Guard 
 
-Inject from User Service(IsAuth) and return boolean value . 
+Inject from User Service(UserId) , check owner  based on path id  and return boolean value .
 
 ## Interseptors
 
