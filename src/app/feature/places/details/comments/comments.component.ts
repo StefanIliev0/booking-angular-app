@@ -23,21 +23,23 @@ maxPage : number = 10 ;
 constructor( private placeService : PlaceService){
 
 }
-
+//add comment to DB 
 addComment(){
   if(this.newComment?.nativeElement.value){
   this.placeService.addComment(this.newComment?.nativeElement.value , this.placeID);
   this.newComment.nativeElement.value = '';
 }
 }
+//Change pagination page 
 changePage(page : number){
  this.currentPage = page; 
  this.curComments = this.comments.slice((page - 1) * 6 ,((page - 1) * 6) + 6 ).reverse()
 }
+//delete comment from DB
 deleteComment(commentId : string){
 this.placeService.deleteComment(commentId , this.placeID)
 }
-
+//Edit comment 
 editComment(commentId : string , commentText: string){
   this.deleteComment(commentId);
   this.newComment.nativeElement.value = commentText;

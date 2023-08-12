@@ -1,7 +1,6 @@
 import { Component ,Input, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from 'src/app/feature/users/user-service.service';
 import { Book } from 'src/app/types/Book';
-import { UserBook } from 'src/app/types/UserBook';
 import { PlaceService } from '../../place.service';
 
 @Component({
@@ -30,13 +29,15 @@ ngOnInit(): void {
   }
 this.nextBook = this.placeService.getFurstBook(this.books);
 }
-
+//displays a message to confirm the owner wants to delete the property from the database
 askForRemove(){
   this.removeplace = true; 
 }
+//hide a message for delete.
 refuse(){
   this.removeplace = false; 
 }
+// delete place from DB.
 removeThisPlace(){
  this.placeService.removePlace(this.PlaceId)
 }

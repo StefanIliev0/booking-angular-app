@@ -184,6 +184,69 @@ This component has one functionaly:
 
 On destroy all subscription is unsubsribe.
 
+#### Details place component 
+
+The Details place component depends on OnInit ,PlaceService, userService ,OnDestroy, ActivatedRoute.
+
+This component displays the detailed information of the specific rental location. Has its own resolver that extracts the information about the specific housing and passes it to the component.
+It interacts with several subcomponents by passing information to them. On initialization, it takes the data from the resolver and adds it to the place store created for the purpose. And saves any of the data as variables. It interacts with an external object based on which it generates SVG icons in the template.
+
+On destroy all subscription is unsubsribe.
+
+This component has five cubcomponents:
+
+##### Small media component
+
+The Small media component depends on OnInit , OnDestroy, PlaceService .
+
+The purpose of this sub component is to render the images of the specific object. On initialization, it accepts an array with the URI paths of the images via the Place service and renders a main one if there are any other variables below it. If there is a need
+a scroller appears. If the specific location has no saved images it shows SVG .
+
+This component has one functionaly:
+
+`changeActivePic ( pic : string)` - when clicking on a non-main photo, it replaces its place with the main one.
+
+On destroy all subscription is unsubsribe.
+
+##### Comments component
+
+The Comments component depends on OnInit , OnDestroy, PlaceService .
+
+The purpose of this component is to display a list of the comments of the given location and to enable the addition of new ones. The component uses a shared component for pagination. On initialization, it loads the comments via the Place service. If the user is the author of the displayed comment, buttons for deleting and editing the comment are displayed.
+
+
+This component has four functionalities:
+
+`addComment()` - add comment to DB via Place service.
+
+`deleteComment(commentId : string)` - delete comment from DB via Place service.
+
+`editComment(commentId : string , commentText: string)` - edit  comment from DB via Place service.
+
+`changePage(page : number)` - change page via shared pagination component. 
+
+On destroy all subscription is unsubsribe.
+
+##### Owner info  component
+
+The Owner info component depends on  OnDestroy, PlaceService .
+
+When a user who is not the owner of the particular object opens the detail page, this component shows information about the owner of the object such as nickname, profile picture and information about him. If the owner opens the detail view, this object shows when the next reservation is for the specific apartment and gives an option through buttons to edit and delete (after being verified by query) properties from the database.
+
+During initialization, it checks the id of the specific user and compares it with that of the owner, as well as takes the reservations through a service.
+
+
+This component has three functionalities:
+
+`askForRemove()` - displays a message to confirm the owner wants to delete the property from the database.
+
+`refuse()` - hide a message for delete.
+
+`removeThisPlace()` - delete place from DB.
+
+
+On destroy all subscription is unsubsribe.
+
 
 ### Router 
 

@@ -21,7 +21,7 @@ export class SmallMediaComponent implements OnInit ,OnDestroy{
       this.activePic = pics[0] ;
       this.otherPics = pics.filter(x => x !== this.activePic) 
     }})}
-    
+    // when clicking on a non-main photo, it replaces its place with the main one.
     changeActivePic ( pic : string){ 
       this.activePic = pic ; 
       this.otherPics = this.allPics.filter(x => x !== this.activePic); 
