@@ -137,7 +137,7 @@ This component has four functionalities:
 On destroy all subscription is unsubsribe.
 
 #### Edit place  component 
-The Add place component depends on PlaceService,ActivatedRoute ,Router, UserService , OnDestroy.
+The Edit place component depends on PlaceService,ActivatedRoute ,Router, UserService , OnDestroy.
 
 Displays the form for editing a place to spend the night, checks the correct fields and displays a message in case of an error, also uses a shared component that displays an error message when an error occurs from the server.Takes the data on page load and loads it into the form fields.
 
@@ -157,15 +157,33 @@ This component has six functionalities:
  
 On destroy all subscription is unsubsribe.
 
-#### Footer component 
+#### Holiday trip component 
 
-Footer component haven`t dependensies. 
+The Holiday trip component depends on OnInit ,PlaceService,OnDestroy.
 
-Renders footer information.
+This component displays a collection of places and gives access to their detail page, has added pagination as well as filtering the displayed results by location and price. At initialization it is attached to the find store, where a shared component adds the user's desire for filtering. on change, a new collection is called against the results.
 
-#### Error page  component 
 
-It is a simple component that is displayed on the screen when the page the user is looking for is not found and provides a return path to the home page.
+This component has one functionaly:
+
+`replacePage(num :number)` - function that is passed to a shared element that returns the page whose content to load.
+
+On destroy all subscription is unsubsribe.
+
+
+#### Work trip component 
+
+The Holiday trip component depends on OnInit ,PlaceService,OnDestroy.
+
+This component displays a collection of places and gives access to their detail page, has added pagination as well as filtering the displayed results by location and price. At initialization it is attached to the find store, where a shared component adds the user's desire for filtering. on change, a new collection is called against the results. The difference is that with this component it reacts with another service of the place service, which revises the price of the night according to the days the consumer stayed there.
+
+
+This component has one functionaly:
+
+`replacePage(num :number)` - function that is passed to a shared element that returns the page whose content to load.
+
+On destroy all subscription is unsubsribe.
+
 
 ### Router 
 

@@ -44,6 +44,7 @@ export class HolydayTipsComponent implements OnInit ,OnDestroy {
    })}
     })
   }
+  //function that is passed to a shared element that returns the page whose content to load.
   replacePage(num :number){
    this.page = num; 
    this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
@@ -52,8 +53,6 @@ export class HolydayTipsComponent implements OnInit ,OnDestroy {
     this.maxPage = Math.ceil( response.colectionLength / 6) ; 
   })
   }
-  
-
   ngOnInit(): void {
     this.$holidayPlaces =this.service.getHolidayPlaces(this.page ,this.location,this.price).subscribe(res  => {
      const response = res as holidayResp;
