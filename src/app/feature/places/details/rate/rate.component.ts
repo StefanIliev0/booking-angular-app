@@ -22,7 +22,7 @@ addRating : boolean = false;
 $userId : Subscription = new Subscription; 
 $rate : Subscription = new Subscription; 
 
-constructor( private userService : UserService , private plaseService : PlaceService){
+constructor( private userService : UserService , private placeService : PlaceService){
 }
 
 ngOnInit(): void {
@@ -32,13 +32,14 @@ ngOnInit(): void {
 this.setRating();
 if(this.userId == this.ownerId){
   this.isVoted = true; 
-}
-}
+}}
+//modifies a variable to display the voting GUI.
 addRatingFn(){
   this.addRating = true;
 }
+// saves and changes the current object rating
 setRating(){
-  this.$rate = this.plaseService.getRate().subscribe(y =>{
+  this.$rate = this.placeService.getRate().subscribe(y =>{
     this.stars = [];
     this.rate = 0; 
     y?.forEach(x => {
@@ -62,12 +63,13 @@ setRating(){
   })
 
 }
-
+// modifies a variable that is passed when voting.
 ChangeRate(rate : number){
   this.currRate = rate; 
 }
+// adds the selected rating to the rating of the specific object through the service
 addRate(){
-  this.plaseService.addRate({ user : this.userId , rate : this.currRate}, this.placeId)
+  this.placeService.addRate({ user : this.userId , rate : this.currRate}, this.placeId)
 }
 
 ngOnDestroy(): void {

@@ -247,6 +247,51 @@ This component has three functionalities:
 
 On destroy all subscription is unsubsribe.
 
+##### Rate component
+
+The Rate component depends on  OnDestroy , OnInit , placeService, userService .
+
+This component has the purpose of displaying the rating of the specific housing. If the user is not the owner, is registered and has not yet voted for this housing, the component displays a voting option. otherwise, it displays the object's rating numerically and graphically.
+
+During the initialization of the component, it takes information about the user and about the voting users through a service.
+
+
+This component has four functionalities:
+
+`addRatingFn()`  - modifies a variable to display the voting GUI.
+
+`setRating()` - saves and changes the current object rating. 
+
+`ChangeRate(rate : number)` - modifies a variable that is passed when voting.
+
+`addRate()` - adds the selected rating to the rating of the specific object through the service. 
+
+
+On destroy all subscription is unsubsribe.
+
+##### Reservation component
+
+The Reservation component depends on  OnDestroy , OnInit , placeService, userService .
+
+The purpose of this component is to generate a calendar, generate on this calendar the days that are already booked and interact with the user to make a reservation.
+
+On initialization, the component fetches through the service the previous reservations of the property, generates the current month and saves several variables.
+
+
+This component has five functionalities:
+
+`previousMonth()`  - generates the previous month and changes some variables from the generated month.
+
+`nextMonth()` - generates the next month and changes some variables from the generated month.
+
+`setResDate(day : Day)` - set reservation dates.
+
+`makeBook()` - executed if the user is the owner of the object and makes a reservation through the place service.
+
+`makeRequest()` - executed if the user is not the owner of the object and makes a request in the form of a message to the owner in order to reserve the place.
+
+
+On destroy all subscription is unsubsribe.
 
 ### Router 
 
