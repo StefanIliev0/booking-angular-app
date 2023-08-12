@@ -48,8 +48,61 @@ Accordingly, the file structure of the application is:
 [...at home](#contents)
 
 ## App module
+ ### Functionalities 
+The app module is an entry point to the application, the main route and store are initialized through it.
+
+### Components 
+
+#### App component 
+The App component depends on UserService , Router, OnInit ,OnDestroy.
+
+It checks through the services whether there is any information saved in LocalStorage when the application is initialized, and if there is, it is saved with the store.
+
+The app component also initializes a subscription to the router event. If there is a path change and there is a logged in user, it updates the user information. More specifically messages and reservations.
+
+On destroy all subscription is unsubsribe.
+
+### Router 
+
+The router app initializes the home path and conducts the rest of the routers.
 
 ## Core module 
+
+### Functionalities 
+This module initializes components that are used once or are used on each of the routes.
+
+### Components 
+
+#### Home component 
+
+The Home component depends on UserService , OnInit , OnDestroy.
+
+The home component is a home page that displays various functionalities of the application and guides the user to them.
+
+During initialization, it checks if there is a registered user logged in and changes some of the paths accordingly.
+
+
+#### Header component 
+
+The Header component depends on UserService , OnInit , OnDestroy.
+
+Renders a navigation system for the application.
+
+During initialization, it checks if there is a registered user logged in and changes right side.
+
+#### Footer component 
+
+Footer component haven`t dependensies. 
+
+Renders footer information.
+
+#### Error page  component 
+
+It is a simple component that is displayed on the screen when the page the user is looking for is not found and provides a return path to the home page.
+
+### Router 
+
+This module use App route modyle. 
 
 ## Place module 
 
