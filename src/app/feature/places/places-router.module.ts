@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HolydayTipsComponent } from './holyday-tips/holyday-tips.component';
 import { WorkTripsComponent } from './work-trips/work-trips.component';
 import { AddPlaceComponent } from './add-place/add-place.component';

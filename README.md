@@ -293,9 +293,24 @@ This component has five functionalities:
 
 On destroy all subscription is unsubsribe.
 
+
+### Place Resouver 
+
+The purpose of the resolver is to take an obx from the server based on the path and pass it to the component rendered on the corresponding path via injected Place service.
+
 ### Router 
 
-This module use App route module. 
+Place router navigates through several paths and they are:
+
+* /holiday-trips/list
+* /work-trips/list
+* /add-place 
+    use `isAuthGuard()` 
+* /places/:id/details
+* /places/:id/edit
+    use `isAuthGuard()` and `isOwnerGuard()`
+
+The error page path is also included in this router. 
 
 [go back](#modules)
 
