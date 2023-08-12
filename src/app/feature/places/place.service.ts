@@ -19,7 +19,6 @@ import { User } from 'src/app/types/User';
 import { UserService } from '../users/user-service.service';
 import { Subscription } from 'rxjs';
 import { UsersActions } from 'src/app/store/user.actions';
-import { UserBook } from 'src/app/types/UserBook';
 
 type USerBooks = {from : string , to : string , place : string};
 
@@ -225,7 +224,7 @@ getFurstBook(books : Book[]) : Book[] {
         nextBook = x;
       }})
     return [nextBook]
-  }}
+}}
 getBooks(){
   return this.store.select(selectBooks)
 }
@@ -257,7 +256,6 @@ if(currFromDate.getFullYear() == year || currToDate.getFullYear() == year){
     })}}})
 return currentMounthArr 
 }
-
 private generateMonth(month : number , year : number): Day[]{
   let currentMounthArr : Day[] = []
   let furstDate =  new Date (year,month,1); 
@@ -311,7 +309,6 @@ private generateMonth(month : number , year : number): Day[]{
 
   return currentMounthArr
 }
-
 getMonth(mounth : number): string{
 return Months[mounth];
 }
@@ -431,7 +428,6 @@ FASILITIES?.forEach(x => {
 
 return currForm;
 }
-
 removePicture(url : string){
   let $req : Subscription = new Subscription; 
   $req = this.http.delete(url).subscribe(x =>{

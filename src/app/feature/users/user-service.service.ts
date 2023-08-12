@@ -148,4 +148,12 @@ uploadProfilePic(pic : File){
   })
   return `${BASIC_URI}/image/${pic.name}`
 }
+deleteProfilePic(pic : string){
+  if(pic.startsWith(BASIC_URI)){
+    let $req : Subscription = new Subscription; 
+    $req = this.http.delete(pic).subscribe(x =>{
+        $req.unsubscribe();
+    }) ;
+  }
+}
 }

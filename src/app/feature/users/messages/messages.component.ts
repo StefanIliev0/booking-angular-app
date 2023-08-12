@@ -40,6 +40,16 @@ sendMessage(text : string){
   this.newNessage.nativeElement.value = "" ; 
   
 }
+approveBook(){
+this.placeServise.makeBook(this.forPlace.from,this.forPlace.to,this.forPlace.id, this.otherUserId);
+this.userService.aproveBook(this.userId , this.otherUserId , this.messageId);
+this.userService.updateUserData();
+this.router.navigate(['/profile','messages']);
+}
+unAproveBook(){
+  this.userService.removeConversation( this.messageId);
+   this.router.navigate(['/profile','messages']);
+}
 ngOnInit(): void {
   this.$userPlaces = this.userService.getPlaces().subscribe(x => {
     this.userPlaces = x; 
@@ -74,16 +84,6 @@ ngOnInit(): void {
     })
   }
 
-approveBook(){
-this.placeServise.makeBook(this.forPlace.from,this.forPlace.to,this.forPlace.id, this.otherUserId);
-this.userService.aproveBook(this.userId , this.otherUserId , this.messageId);
-this.userService.updateUserData();
-this.router.navigate(['/profile','messages']);
-}
-unAproveBook(){
-  this.userService.removeConversation( this.messageId);
-   this.router.navigate(['/profile','messages']);
-}
 ngOnDestroy(): void {
   this.$messages.unsubscribe();
   this.$userId.unsubscribe();

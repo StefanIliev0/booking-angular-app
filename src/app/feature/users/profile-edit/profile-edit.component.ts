@@ -36,9 +36,10 @@ export class ProfileEditComponent implements OnDestroy,OnInit  {
       }, 100)
     }
     removePic(){
-      this.profilePic = ""
+      this.userService.deleteProfilePic(this.profilePic);
+      this.profilePic = ""; 
     }
-     changeGetPictureMethod(){
+    changeGetPictureMethod(){
       this.isUri = !this.isUri;
       this.form.value["profilePicture"] = "";
       this.files = []; 

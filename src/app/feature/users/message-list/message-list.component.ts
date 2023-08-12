@@ -33,7 +33,6 @@ getNickcname(participants : {id : string , nickname : string}[]){
   })
   return nickname
 }
-
 getIsHaveNewMessages(messages : {read : boolean , user : string , mesage : string }[]){
 let isNewM = 0; 
 messages?.forEach(x => {
@@ -51,7 +50,7 @@ needApproval(aproval : {approve : boolean , unapprove : boolean}){
   return true
 }
 goToMessage(messageId : string){
-  this.router.navigate(['/profile','messages',messageId]);
+this.router.navigate(['/profile','messages',messageId]);
 }
 ngOnInit(): void {
  

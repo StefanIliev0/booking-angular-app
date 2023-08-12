@@ -45,7 +45,7 @@ Accordingly, the file structure of the application is:
 5. [Shared module](#shared-module) 
 
 
-[...at home](#contents)
+[home](#contents)
 
 ## App module
  ### Functionalities 
@@ -294,26 +294,146 @@ This component has five functionalities:
 On destroy all subscription is unsubsribe.
 
 
-### Place Resouver 
+### Place Resover 
 
 The purpose of the resolver is to take an obx from the server based on the path and pass it to the component rendered on the corresponding path via injected Place service.
 
-### Router 
+### Place Router 
 
 Place router navigates through several paths and they are:
 
 * /holiday-trips/list
 * /work-trips/list
 * /add-place 
-    use `isAuthGuard()` 
+   * use `isAuthGuard()` 
 * /places/:id/details
 * /places/:id/edit
-    use `isAuthGuard()` and `isOwnerGuard()`
+   * use `isAuthGuard()` and `isOwnerGuard()`
 
 The error page path is also included in this router. 
 
 [go back](#modules)
 
 ## User module 
+
+### Functionalities 
+
+This module initializes components that are used to render paths related to displaying, modifying, and creating users object.
+
+### Components 
+
+#### Register component 
+
+The Register component depends on store, Router, UserService.
+
+The purpose of this component is to visualize, validate and pass the registration form data to the application.
+
+Before sending the data, it checks whether the form is valid, if it is not valid it displays an error message, as well as in the case of an error sent by the server.
+
+
+This component has one functionality:
+
+`register(form : NgForm)` - checks and sends the data from the form to the server via userService, if there is no error, saves the data for the created user in the user store.
+
+#### Login component 
+
+The Login  component depends on store, Router, UserService.
+
+The purpose of this component is to visualize, validate and pass the registration form data to the application.
+
+Before sending the data, it checks whether the form is valid, if it is not valid it displays an error message, as well as in the case of an error sent by the server.
+
+
+This component has one functionality:
+
+`Login(form : NgForm)` - checks and sends the data from the form to the server via userService, if there is no error, saves the data for the received user in the user store.
+
+#### Profile details component 
+
+The Profile details  component depends on OnInit, OnDestroy, UserService, Router. 
+
+The purpose of the component is to display information about the specific user, with the first section showing the basic information. Section two displays the properties owned by this user, with the option to redirect to the property's view and edit pages. The third section displays a list of the user's approved reservations.
+
+#### Profile edit component 
+
+The Profile edit component depends on OnInit, OnDestroy, UserService.
+
+The purpose of the component is to get from the store and display the information about the user, give him the possibility to edit the information, check it and save it in the store and the database.
+
+When the component is initialized, the information is taken from the store via a service and displayed on the editable form.
+
+This component has five functionalities:
+
+`setFiles(images : File[])` - takes files uploaded to a shared component.([uploaded file component](#upload-pictures-component)). 
+
+`changeGetPictureMethod()` - change method to get new images. 
+
+`ShowDelete()` and `hideDelete()` - show and hide Delete div pressing which removes the pictures
+ 
+`removePic(pic : string)` - makes a request to remove current picture.
+
+`edit (form : NgForm )` - edit details to the specific user's data store via UserService.
+ 
+On destroy all subscription is unsubsribe.
+
+#### User control  component 
+
+The Profile edit component depends on OnInit, OnDestroy, UserService, Router .
+
+The purpose of this component is, in the presence of the user, to display buttons with which to navigate between the paths for editing and using the information.
+
+This component has three functionalities:
+
+`open()` - modifies a variable that spans the component in its full size to show all paths.
+
+`close()` - modifies a variable that collapses the component to a reduced size to not show the paths.
+
+`logout()` - send request to userService for logout user from DB and remove user from User store.
+ 
+On destroy all subscription is unsubsribe.
+
+#### Messages list component 
+
+The Messages list component depends on OnInit, OnDestroy, UserService, Router .
+
+The purpose of the component is to visualize a list of messages that the user has, noting the nickname of the other user, for which apartment the conversation was created and whether there are new messages on this conversation.
+
+Initialization fetches the user's messages from the store via the service and sets some variables.
+
+This component has four functionalities:
+
+`getNickcname(participants : {id : string , nickname : string}[])` - takes the nickname of the other user in the chat.
+
+`getIsHaveNewMessages(messages : {read : boolean , user : string , mesage : string }[])` - check is have new messages on this conversation.
+
+`needApproval(aproval : {approve : boolean , unapprove : boolean})` -  checks if the booking associated with this conversation needs approval.
+
+`goToMessage(messageId : string)` -  navigate to current conversation page. 
+ 
+On destroy all subscription is unsubsribe.
+
+#### Messages component 
+
+The Messages component depends on OnInit, OnDestroy, UserService, Router , ActivatedRoute, placeService.
+
+The purpose of this component is to visualize the messages in this conversation in detail. At the beginning of each started conversation of the owner of the property with which he is connected, an element appears in which he must approve or reject the reservation. If he refuses, the messages are deleted from his profile, and the other user receives a message that one user has deleted the conversation. If he accepts the reservation, it is saved in the data for the place and the other user. Both users have the option to delete the conversation at any time.
+
+When the component is initialized, messages are marked as read. The user id as well as the nicknames of both users are taken and some variables are set.
+
+This component has four functionalities:
+
+`incrementNum()` - changes a variable that depends on how many messages will be displayed on the screen.
+
+`sendMessage(text : string)` - add new message to conversation via service. 
+
+`approveBook()` -  approve curent book to place and user via service.
+
+`unAproveBook()` -  unapprove curent book to place and user via service.
+ 
+On destroy all subscription is unsubsribe.
+
+### User Router 
+
+[go back](#modules)
 
 ## Shared module 
