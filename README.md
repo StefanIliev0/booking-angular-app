@@ -7,7 +7,7 @@ The application is an application for publishing and saving places to spend the 
 
 ## Contents
 1. [Startup](#startup)
-2.[Application structure](#application-structure)
+2. [Application structure](#application-structure)
 
 ## Startup
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
@@ -22,7 +22,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Accordingly, the file structure of the application is:
 
-1. App modyle
+1. App module
     1. Core module.
     2. Featyre.
         * Places module.
