@@ -84,6 +84,7 @@ The home component is a home page that displays various functionalities of the a
 
 During initialization, it checks if there is a registered user logged in and changes some of the paths accordingly.
 
+[go back](#modules)
 
 #### Header component 
 
@@ -93,15 +94,21 @@ Renders a navigation system for the application.
 
 During initialization, it checks if there is a registered user logged in and changes right side.
 
+[go back](#modules)
+
 #### Footer component 
 
 Footer component haven`t dependensies. 
 
 Renders footer information.
 
+[go back](#modules)
+
 #### Error page  component 
 
 It is a simple component that is displayed on the screen when the page the user is looking for is not found and provides a return path to the home page.
+
+[go back](#modules)
 
 ### Router 
 
@@ -136,6 +143,7 @@ This component has four functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### Edit place  component 
 The Edit place component depends on PlaceService,ActivatedRoute ,Router, UserService , OnDestroy.
 
@@ -157,6 +165,7 @@ This component has six functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### Holiday trip component 
 
 The Holiday trip component depends on OnInit ,PlaceService,OnDestroy.
@@ -171,6 +180,7 @@ This component has one functionaly:
 On destroy all subscription is unsubsribe.
 
 
+[go back](#modules)
 #### Work trip component 
 
 The Holiday trip component depends on OnInit ,PlaceService,OnDestroy.
@@ -184,6 +194,7 @@ This component has one functionaly:
 
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### Details place component 
 
 The Details place component depends on OnInit ,PlaceService, userService ,OnDestroy, ActivatedRoute.
@@ -294,6 +305,7 @@ This component has five functionalities:
 On destroy all subscription is unsubsribe.
 
 
+[go back](#modules)
 ### Place Resover 
 
 The purpose of the resolver is to take an obx from the server based on the path and pass it to the component rendered on the corresponding path via injected Place service.
@@ -335,6 +347,7 @@ This component has one functionality:
 
 `register(form : NgForm)` - checks and sends the data from the form to the server via userService, if there is no error, saves the data for the created user in the user store.
 
+[go back](#modules)
 #### Login component 
 
 The Login  component depends on store, Router, UserService.
@@ -348,12 +361,14 @@ This component has one functionality:
 
 `Login(form : NgForm)` - checks and sends the data from the form to the server via userService, if there is no error, saves the data for the received user in the user store.
 
+[go back](#modules)
 #### Profile details component 
 
 The Profile details  component depends on OnInit, OnDestroy, UserService, Router. 
 
 The purpose of the component is to display information about the specific user, with the first section showing the basic information. Section two displays the properties owned by this user, with the option to redirect to the property's view and edit pages. The third section displays a list of the user's approved reservations.
 
+[go back](#modules)
 #### Profile edit component 
 
 The Profile edit component depends on OnInit, OnDestroy, UserService.
@@ -376,6 +391,7 @@ This component has five functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### User control  component 
 
 The Profile edit component depends on OnInit, OnDestroy, UserService, Router .
@@ -392,6 +408,7 @@ This component has three functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### Messages list component 
 
 The Messages list component depends on OnInit, OnDestroy, UserService, Router .
@@ -412,6 +429,7 @@ This component has four functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 #### Messages component 
 
 The Messages component depends on OnInit, OnDestroy, UserService, Router , ActivatedRoute, placeService.
@@ -432,6 +450,7 @@ This component has four functionalities:
  
 On destroy all subscription is unsubsribe.
 
+[go back](#modules)
 ### User Router 
 
 [go back](#modules)
