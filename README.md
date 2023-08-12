@@ -105,11 +105,73 @@ It is a simple component that is displayed on the screen when the page the user 
 
 ### Router 
 
-This module use App route modyle. 
+This module use App route module. 
 
 [go back](#modules)
 
 ## Place module 
+
+### Functionalities 
+
+This module initializes components that are used to render paths related to displaying, modifying, and creating stay locations (the main collection).
+
+### Components 
+
+#### Add place  component 
+
+The Add place component depends on PlaceService, Router, UserService , OnDestroy.
+
+Displays the form for creating a place to spend the night, checks the correct fields and displays a message in case of an error. also uses a shared component that displays an error message when an error occurs from the server.
+
+This component has four functionalities:
+
+`changeGetPictureMethod()` - changes how images are taken when filling out the form.
+
+`addPicField(item : number)` - Adds a new field to the form if the way to take photos is via URL. 
+ 
+`setFiles(images : File[])` - takes files uploaded to a shared component.([uploaded file component](#upload-pictures-component)). 
+
+`create (form : NgForm )` - makes a request to create a new location and adds the location to the specific user's data store.
+
+ 
+On destroy all subscription is unsubsribe.
+
+#### Edit place  component 
+The Add place component depends on PlaceService,ActivatedRoute ,Router, UserService , OnDestroy.
+
+Displays the form for editing a place to spend the night, checks the correct fields and displays a message in case of an error, also uses a shared component that displays an error message when an error occurs from the server.Takes the data on page load and loads it into the form fields.
+
+This component has six functionalities:
+
+`changeGetPictureMethod()` - changes how images are taken when filling out the form.
+
+`addPicField(item : number)` - Adds a new field to the form if the way to take photos is via URL. 
+ 
+`setFiles(images : File[])` - takes files uploaded to a shared component.([uploaded file component](#upload-pictures-component)). 
+
+`edit (form : NgForm )` - makes a request to edit current location and edit the location to the specific user's data store.
+
+`removePic(pic : string)` - makes a request to remove current picture.
+
+`ShowDelete(index : number)` and `hideDelete(index : number)` - show and hide Delete div pressing which removes the pictures
+ 
+On destroy all subscription is unsubsribe.
+
+#### Footer component 
+
+Footer component haven`t dependensies. 
+
+Renders footer information.
+
+#### Error page  component 
+
+It is a simple component that is displayed on the screen when the page the user is looking for is not found and provides a return path to the home page.
+
+### Router 
+
+This module use App route module. 
+
+[go back](#modules)
 
 ## User module 
 

@@ -24,7 +24,7 @@ fasilities : {fname : string , text : string , svg :{d : string , view : string}
 images : string[] = []; 
 constructor(private service : PlaceService , private router : Router , private userService : UserService){};
 
-
+// add new field for imageURI 
   addPicField(item : number){
     if(this.form?.value?.[`img-${item}`] && item == this.picItems.length){
       this.picItems = [...this.picItems , Number(item) + 1 ]
@@ -35,12 +35,14 @@ constructor(private service : PlaceService , private router : Router , private u
       this.images[item - 1] = ""; 
     }
   }
+  // change profile picture get  method  files / URI 
 changeGetPictureMethod(){
   this.isUri = !this.isUri;
   this.picItems = [1];
   this.images = [];
   this.files = [] ; 
 }
+// makes a request to create a new location and adds the location to the specific user's data store
   async create (form : NgForm ){
 
     if(form.invalid ){
@@ -55,14 +57,12 @@ changeGetPictureMethod(){
     
     
   }
+  //get files from upload files component 
 setFiles(images : File[]){
   this.files = images;
 }
   ngOnDestroy(): void {
     this.$newPlace.unsubscribe();
   }
-
-
-
 
 }
