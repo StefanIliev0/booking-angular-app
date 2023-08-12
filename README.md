@@ -9,6 +9,7 @@ The application is an application for publishing and saving places to spend the 
 1. [Startup](#startup)
 2. [Application structure](#application-structure)
 3. [Modules](#modules)
+4. [Guards](#guards)
 
 ## Startup
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
@@ -94,21 +95,17 @@ Renders a navigation system for the application.
 
 During initialization, it checks if there is a registered user logged in and changes right side.
 
-[go back](#modules)
-
 #### Footer component 
 
 Footer component haven`t dependensies. 
 
 Renders footer information.
 
-[go back](#modules)
 
 #### Error page  component 
 
 It is a simple component that is displayed on the screen when the page the user is looking for is not found and provides a return path to the home page.
 
-[go back](#modules)
 
 ### Router 
 
@@ -450,9 +447,119 @@ This component has four functionalities:
  
 On destroy all subscription is unsubsribe.
 
-[go back](#modules)
 ### User Router 
+User router navigates through several paths and they are:
+
+* /login
+   * use `isntAuthGuard()`
+* /register
+   * use `isntAuthGuard()`
+* /profile/details 
+   * use `isAuthGuard()` 
+* /profile/edit
+   * use `isAuthGuard()`
+* /profile/messages
+   * use `isAuthGuard()` 
+* /profile/messages/:messageId
+   * use `isAuthGuard()` 
 
 [go back](#modules)
 
 ## Shared module 
+### Functionalities 
+
+This module is used to render components shared between other modules.
+
+### Components 
+
+#### Button component 
+
+The Button  component depends on Input , Output
+
+The purpose of this component is not to propagate a button with a single style. The button receives as Input the text that is written inside and as Uput the function that will be executed when pressed.
+
+This component has one functionality:
+
+` onClick()` - executes the event passed by the parent component.
+
+[go back](#modules)
+#### Link  component 
+
+The Link  component depends on Input 
+
+The purpose of this component is to distribute a link that has a style. It receives as input the text that is written on the link and the path to which it leads.
+
+[go back](#modules)
+#### Error message component 
+
+The Error message component  depends on Store. 
+
+The purpose of this component is to display an error message when an error occurs anywhere in the application.
+On initialization, the component subscribes to the Error Store for new errors.
+
+[go back](#modules)
+#### Pagination component 
+
+The Pagination component depends on Input , Output .
+
+The purpose of this component is to render a component that is used to display pagination and change to the current page on click.
+
+This component has one functionality:
+
+` replacePage(value: number)` - executes an event that changes the page of the parent component.
+
+ 
+
+[go back](#modules)
+#### Search box component 
+
+The Search box component depends on Store .
+
+This component takes from the store the values that the user has used and renders them. When interacting with the user, it can change the values in the store and change the parent component's filtration accordingly.
+
+This component has three functionalities:
+
+`find(form : NgForm)` - set new values on Find Store. 
+
+[go back](#modules)
+#### Trip Card component 
+
+The Trip Card component depends on Input .
+
+The component receives data from the parent component and visualizes it in the form of a card.
+
+
+[go back](#modules)
+#### Upload pictures component 
+
+The Upload pictures component depends on Input , Output ,DomSanitizer, SafeUrl .
+
+this component is used to render a form for uploading images to the server.
+
+This component has five functionalities:
+
+`onFileSelected(event: any)` - add file to aray.
+
+`ShowDelete(index : number)`and `hideDelete(index : number)` - changing a variable that displays a div whose click removes a file from the files array.
+
+`previewSelectedImage()` -  preview the selected images.
+
+
+`removePic(pic : SafeUrl , index : number)` - remove on selected image from file aray 
+
+
+[go back](#modules)
+
+## Guards
+
+#### Is Autheticated Guard 
+
+    Inject from User Service(IsAuth) and return boolean value . 
+
+#### Isn`t Autheticated Guard 
+
+    Inject from User Service(UserId) , check owner  based on path id  and return boolean value .
+#### Is Owner Guard 
+
+    Inject from User Service(IsAuth) and return boolean value . 
+

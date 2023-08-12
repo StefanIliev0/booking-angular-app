@@ -28,7 +28,6 @@ export class UploadPicturesComponent {
     this.previewSelectedImage();
     this.getFiles.emit(this.selectFiles);
   }}
-
   previewSelectedImage() {
     if (this.selectedFile) {
       const objectUrl = URL.createObjectURL(this.selectedFile);
