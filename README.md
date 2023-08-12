@@ -23,16 +23,16 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Accordingly, the file structure of the application is:
 
-1. App module
-    1. Core module.
-    2. Featyre.
+* App module
+    * Core module.
+    * Featyre.
         * Places module.
         * Users module.
-    3. Shared module.
-    4. Guards.
-    5. Interseptors.
-    6. Store. 
-    7. Types. 
+    * Shared module.
+    * Guards.
+    * Interseptors.
+    * Store. 
+    * Types. 
 
 
 
