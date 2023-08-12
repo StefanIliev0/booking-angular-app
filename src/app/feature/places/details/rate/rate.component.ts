@@ -17,6 +17,7 @@ rate : number = 0 ;
 isVoted : boolean = false; 
 userId : string = ""; 
 currRate : number = 0 ; 
+addRating : boolean = false; 
 
 $userId : Subscription = new Subscription; 
 $rate : Subscription = new Subscription; 
@@ -33,7 +34,9 @@ if(this.userId == this.ownerId){
   this.isVoted = true; 
 }
 }
-
+addRatingFn(){
+  this.addRating = true;
+}
 setRating(){
   this.$rate = this.plaseService.getRate().subscribe(y =>{
     this.stars = [];

@@ -32,7 +32,42 @@
         color: var(--white);
         text-shadow: 0 0 10px rgba(0,0, 0, 0.8);
     }
+    .selectImageMethod label{
+        font-size: 1.2em;
+    }
+    .selectImageMethod input{
+        width: 20px;
+        height: 20px;
+        margin: 20px;
+    }
     .error {
         font-size: 1.2em;
         color: red;
     }
+    .previewPictures{
+        position: relative;
+        display: block;
+        width: 200px;
+        height: auto;
+        border-radius: 1em;
+        overflow: hidden;
+    }
+    svg{
+        height: 90%;
+        width: 90%;
+        fill: red;
+        padding: 15%;
+    }
+    .deleteDiv{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        }
+        .preview{
+            width: 100px;
+            height: auto;
+            border-radius: 1em;
+            overflow: hidden;
+        }

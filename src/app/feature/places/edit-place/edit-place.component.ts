@@ -4,7 +4,7 @@ import {NgForm} from '@angular/forms';
 import { PlaceService } from '../place.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Place } from 'src/app/types/Place';
-import { FASILITIES } from 'src/app/constants';
+import { BASIC_URI, FASILITIES } from 'src/app/constants';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../users/user-service.service';
 
@@ -17,6 +17,11 @@ import { UserService } from '../../users/user-service.service';
 export class EditPlaceComponent implements OnDestroy,OnInit  {
   $newPlace :Subscription = new Subscription;
   @ViewChild('form') form? : NgForm;
+  previousImages : string[] = []; 
+  remove : boolean[] = [];
+  files : File[] = [] ;  
+  images : string[] = []; 
+  isUri : boolean = false; 
   curPlace : Place[] = [];
   placeId : string = '';
   curForm = {};
@@ -27,14 +32,31 @@ export class EditPlaceComponent implements OnDestroy,OnInit  {
     constructor(private service : PlaceService , private router : Router , private userService : UserService , private route : ActivatedRoute){
 
     }
-  
-  
+    changeGetPictureMethod(){
+      this.isUri = !this.isUri;
+      this.picItems = [1];
+      this.images = [];
+      this.files = [] ; 
+    }
+    setFiles(images : File[]){
+      this.files = images;
+    }
     addPicField(item : number){
       if(this.form?.value?.[`img-${item}`] && item == this.picItems.length){
         this.picItems = [...this.picItems , Number(item) + 1 ]
+        this.images[item - 1] =  this.form?.value?.[`img-${item}`]; 
+      }
+      if(this.form?.value?.[`img-${item}`] == ""){
+        this.picItems = this.picItems.slice(0 , -1);
+        this.images[item - 1] = ""; 
       }
     }
-  
+    removePic(pic : string){
+      this.previousImages = this.previousImages.filter(x => x !== pic);
+      if(pic.startsWith(BASIC_URI)){
+        this.service.removePicture(pic); 
+      }
+    }
     async edit (form : NgForm ){
   
       if(form.invalid ){
@@ -42,19 +64,23 @@ export class EditPlaceComponent implements OnDestroy,OnInit  {
        return
       }
   
-      this.$newPlace = this.service.editPlace(form , this.placeId ).subscribe(res => {
+      this.$newPlace = (await this.service.editPlace(form , this.placeId , this.previousImages , this.files )).subscribe(res => {
         const editPlace = res as Place; 
       } )
         this.router.navigate([`/places/${this.placeId}/details/`]);
     }
+    ShowDelete(index : number){
+      this.remove[index] = true; 
+    }
+    hideDelete(index : number){
+      setTimeout(( ) => {
+        this.remove[index] = false; 
+      }, 100)
+    }
     ngOnInit(): void { 
     this.curPlace[0] = this.route.snapshot.data["place"] as Place; 
     this.placeId = this.route.snapshot.paramMap.get('id') || "";
-    this.curPlace[0].images?.forEach((x , i ) => {
-      if( i !== 0 ){
-        this.picItems = [...this.picItems , i + 1]
-      }
-    })
+    this.previousImages = this.curPlace[0].images;
     }
     ngAfterViewInit(){
       this.curForm = this.service.createEditForm(this.curPlace[0]);
@@ -66,9 +92,5 @@ export class EditPlaceComponent implements OnDestroy,OnInit  {
     ngOnDestroy(): void {
       this.$newPlace.unsubscribe();
     }
-  
-  
-  
-  
   }
   

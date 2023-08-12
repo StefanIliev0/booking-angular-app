@@ -50,7 +50,8 @@ nextMonth(){
   this.currentMonthArr = this.placeService.addBookDays(this.currentMonthArr  , this.startResDay, this.endResDay , this.thisMounth , this.year)
 }
 setResDate(day : Day){
-  if(!this.isBook){
+  let thisDate = new Date(this.year, this.thisMounth , day.date);
+  if(!this.isBook && (Number(thisDate) >= Number(new Date())) ){
   //check if resDay is set
 if(this.startResDay.day == 0){
   this.startResDay = { day : day.date , month :this.thisMounth,year : this.year};

@@ -47,14 +47,13 @@ changeGetPictureMethod(){
       this.userService.addErr("Sorry , but something in your fields isn't right.");
      return
     }
-    this.service.createPlace(form , this.files);
-    // this.$newPlace =
-     await this.service.createPlace(form , this.files)
-    // .subscribe(res => {
-      // const newPlace = res as Place; 
-      // this.userService.addPlace(newPlace._id);
-      // this.router.navigate(['/places', newPlace._id , 'details']);
-    // } )
+    this.$newPlace = await (await this.service.createPlace(form , this.files)).subscribe(res => {
+      const newPlace = res as Place; 
+      this.userService.addPlace(newPlace._id);
+      this.router.navigate(['/places', newPlace._id , 'details']);
+    } )
+    
+    
   }
 setFiles(images : File[]){
   this.files = images;

@@ -77,12 +77,12 @@ getPlaces(){
 getUser(){
   return this.store.select(selectUser)
 }
-editUser (user :{nickname  : string ,about : string ,profilePicture : string , _id : string} ){
+editUser (user :{nickname  : string ,about : string ,profilePicture : string , _id : string}){
   this.store.dispatch(UsersActions.updateUser({userInfo : user})); 
   return this.http.patch(`${this.USER_BASIC_URI}/${user._id}/update` ,  user)
 }
 createEditForm (user : User){
-  return {nickname  : user.nickname ,about : user.about ,profilePicture : user.profilePicture}
+  return {nickname  : user.nickname ,about : user.about }
 }
 addErr(text : string){
   this.store.dispatch(ErrActions.add({err : text}))
@@ -141,5 +141,11 @@ getNewMessages(messages : Mesage[]){
   })
   return num
 }
-
+uploadProfilePic(pic : File){
+  let $req : Subscription = new Subscription;
+  $req =  this.http.post(`${BASIC_URI}/images/${pic.name}` , {pic}).subscribe(x => {
+  $req.unsubscribe(); 
+  })
+  return `${BASIC_URI}/image/${pic.name}`
+}
 }

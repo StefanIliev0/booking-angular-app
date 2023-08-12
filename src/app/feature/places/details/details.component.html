@@ -13,7 +13,7 @@
         <p><span>Title :</span>  {{curPlace.title}}</p>
         <p><span>Rooms :</span> {{curPlace.rooms}}</p>
         <p><span>Description :</span> {{curPlace.description}}</p>
-        <p><span>Price :</span> {{curPlace.price}}</p>
+        <p><span>Price :</span> {{workPrice != 0 ? workPrice :curPlace.price}}</p>
         </article>
         <article class="facilities-article" > 
             <div *ngFor="let fac of curFacilities" class="fac-div">

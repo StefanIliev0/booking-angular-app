@@ -1,6 +1,6 @@
-<div class="rate-container">
-<h4>Rating : {{!!rate ? rate : 0}} / 5 </h4>
-<ng-container *ngIf="isVoted || !userId">
+<div class="rate-container" (mouseenter)="addRatingFn()">
+<h4>Rating : {{!!rate ?  ( rate%1 == 0? rate : rate.toFixed(2)) : 0}} / 5 </h4>
+<ng-container *ngIf="isVoted || !userId || !addRating">
 <div class="stars-container">
 <div   *ngFor="let star of stars ;let i = index">
     <svg class="star" xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 576 512">
@@ -14,7 +14,7 @@
 </div>  
 </div>    
 </ng-container>
-<ng-container *ngIf="!isVoted && userId">
+<ng-container *ngIf="!isVoted && userId && addRating">
 <div class="stars-container">
 <div class="voteStar" (click)="ChangeRate(1)">
     <svg class="star" xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 576 512">

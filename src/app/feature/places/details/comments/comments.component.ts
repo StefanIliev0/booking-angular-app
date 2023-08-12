@@ -44,9 +44,12 @@ editComment(commentId : string , commentText: string){
 }
 ngOnInit(): void {
       this.$comments = this.placeService.getComments().subscribe(x => {
-      this.comments = x ;
+      this.comments = [...x];
+      if(this.comments.length > 0){
+        this.comments = this.comments?.reverse()
+      }
       this.maxPage = Math.ceil( this.comments.length / 6 );
-      this.curComments = this.comments.length > 6 ? this.comments.slice(0,6).reverse() : this.comments;
+      this.curComments = this.comments.length > 6 ? this.comments.slice(0,6) : this.comments;
     })
 }
 ngOnDestroy(): void {

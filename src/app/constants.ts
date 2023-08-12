@@ -1,5 +1,5 @@
-//  export const BASIC_URI = "http://localhost:3000";
- export const BASIC_URI = "https://kind-lime-attire.cyclic.app";
+ export const BASIC_URI = "http://localhost:3000";
+//  export const BASIC_URI = "https://kind-lime-attire.cyclic.app";
 
 export const FASILITIES : {fname : string , text : string , svg : {d : string , view : string}}[] =[{
     fname : "wifi",

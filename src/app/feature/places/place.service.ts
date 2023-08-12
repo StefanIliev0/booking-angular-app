@@ -19,6 +19,7 @@ import { User } from 'src/app/types/User';
 import { UserService } from '../users/user-service.service';
 import { Subscription } from 'rxjs';
 import { UsersActions } from 'src/app/store/user.actions';
+import { UserBook } from 'src/app/types/UserBook';
 
 type USerBooks = {from : string , to : string , place : string};
 
@@ -51,15 +52,14 @@ async createPlace(form : NgForm , files : File[]){
       images.push(form.value[x]);
     };})}
   if( thisFiles.length > 0 ){
-    thisFiles?.forEach(  x => {
+   thisFiles?.forEach( async  x => {
           const formData = new FormData();
           formData.append('image', x);
-          console.log(x)
-      req$ =   this.http.post(`${BASIC_URI}/images/${x.name}`, formData).subscribe(y => {
-        images.push(y.toString())
+      req$ = this.http.post(`${BASIC_URI}/images/${x.name}`, formData.get("image")).subscribe(( y :{image : string}|any) => {
         console.log("image req : " ,y)
         req$.unsubscribe()
         })
+        images.push(`${BASIC_URI}/images/${x.name}`)
     })
   }
   
@@ -73,24 +73,36 @@ async createPlace(form : NgForm , files : File[]){
     rooms : form.value.rooms , 
     images : images
   } 
-  console.log(newPlace)
-  // return this.http.post(`${this.PLACE_BASIC_URI}/create` , newPlace)
-  return true
+
+  return this.http.post(`${this.PLACE_BASIC_URI}/create` , newPlace)
 }
-editPlace(form :NgForm , placeID : string ){
+async editPlace(form :NgForm , placeID : string , previousImages : string[] , files : File[] ){
+  let req$ : Subscription = new Subscription; 
   let facilities : string[] = []; 
   let images : string[] = []; 
-
+  let thisFiles : File[]  = [...files] ;
   FASILITIES?.forEach(x => {
     if(!!form.value?.[x.fname]){
       facilities.push(x.fname); 
     }
   })
+
+  if(thisFiles.length == 0){
   Object.keys(form.value)?.forEach((x)=> {
     if(x.startsWith("img") && !!form.value[x]){
       images.push(form.value[x]);
-    }
-  })
+    };})}
+  if( thisFiles.length > 0 ){
+   thisFiles?.forEach( async  x => {
+          const formData = new FormData();
+          formData.append('image', x);
+      req$ = this.http.post(`${BASIC_URI}/images/${x.name}`, formData.get("image")).subscribe(( y :{image : string}|any) => {
+        req$.unsubscribe()
+        })
+        images.push(`${BASIC_URI}/images/${x.name}`)
+    })
+  }
+  
   const editedPlace  =  {
     title  : form.value.title  ,
     description : form.value.description , 
@@ -99,7 +111,7 @@ editPlace(form :NgForm , placeID : string ){
     businesTravel : !!form.value.businesTravel, 
     facilities : facilities ,
     rooms : form.value.rooms , 
-    images : images
+    images : [...images , ...previousImages]
   } 
   return this.http.patch(`${this.PLACE_BASIC_URI}/${placeID}/update` ,  editedPlace)
 }
@@ -116,6 +128,24 @@ getWorkPlaces (page : number , location : string , price : string){
   const currPrice = price ? `&price=${price}` : `` ;
 
  return this.http.get(`${this.PLACE_BASIC_URI}/work-catalog/?page=${page-1}${currLocation}${currPrice}`)
+}
+ generateWorkPrice( currentPrise : number , placeId : string){
+  let $userBooks : Subscription = new Subscription();
+  let UserBooks : USerBooks[] = [];
+    let days = 0 ;
+  $userBooks =   this.store.select(selectUserBooks).subscribe( x => {
+    if(x){
+    UserBooks = x as USerBooks[];
+    const curr  =   UserBooks.filter(y => y.place == placeId);  if(curr.length > 0){
+     curr?.forEach(z => {
+      const furstDate : Date = new Date(z.from);
+      const secondDate : Date = new Date(z.to);
+      const differenceInDays = (Number(secondDate) - Number(furstDate)) / (1000 * 60 * 60 * 24 ) 
+      days = days + differenceInDays; 
+     }) ;}}
+    $userBooks.unsubscribe(); 
+  })
+    return currentPrise - (((currentPrise / 100) * (days / 10)) * 100)
 }
 getUserBooks (colection : Place_short[]){
   let UserBooks : USerBooks[] = [];
@@ -385,8 +415,7 @@ let placeFrorm = {
   smallDoubleBed: false,
   singleBed: false,
   sofa: false,
-  terrace: false,
-  "img-1" : ""
+  terrace: false
 }
 let currForm = placeFrorm;
 currForm.title = place.title;
@@ -399,11 +428,18 @@ FASILITIES?.forEach(x => {
   currForm = {...currForm , [x.fname] : true }
   }
 })
-place.images?.forEach((x,i)=>{
-  let curString = `img-${i + 1}`
-currForm = {...currForm , [curString] : x}
-})
+
 return currForm;
+}
+
+removePicture(url : string){
+  let $req : Subscription = new Subscription; 
+  $req = this.http.delete(url).subscribe(x =>{
+      $req.unsubscribe();
+  }) ;
+
+  
+  
 }
 
 }
