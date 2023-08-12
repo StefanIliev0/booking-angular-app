@@ -66,6 +66,9 @@ On destroy all subscription is unsubsribe.
 
 The router app initializes the home path and conducts the rest of the routers.
 
+
+[go back](#modules)
+
 ## Core module 
 
 ### Functionalities 
@@ -103,6 +106,8 @@ It is a simple component that is displayed on the screen when the page the user 
 ### Router 
 
 This module use App route modyle. 
+
+[go back](#modules)
 
 ## Place module 
 
