@@ -10,6 +10,8 @@ The application is an application for publishing and saving places to spend the 
 2. [Application structure](#application-structure)
 3. [Modules](#modules)
 4. [Guards](#guards)
+5. [Interseptors](#interseptors)
+6. [Store](#store)
 
 ## Startup
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
@@ -554,12 +556,113 @@ This component has five functionalities:
 
 #### Is Autheticated Guard 
 
-    Inject from User Service(IsAuth) and return boolean value . 
+Inject from User Service(IsAuth) and return boolean value . 
 
 #### Isn`t Autheticated Guard 
 
-    Inject from User Service(UserId) , check owner  based on path id  and return boolean value .
+Inject from User Service(UserId) , check owner  based on path id  and return boolean value .
+
 #### Is Owner Guard 
 
-    Inject from User Service(IsAuth) and return boolean value . 
+Inject from User Service(IsAuth) and return boolean value . 
 
+## Interseptors
+
+### Auth interseptor 
+
+This interceptor depends on Store;
+
+
+The interceptor catches the requests, checks if the URL starts with a BASIC URI. If it is the same and if there is a user, it adds an "accessToken" header to the request.
+
+If an error occurs in the response, the interceptors add an error message to the Error Store. Otherwise, clear the Error Store.
+
+The interceptor is provided by the authInterceptorProvider
+
+
+[home](#contents)
+## Store
+
+In this project, there is an Ngrx store that contains a collection of four elements. Each element has Actions, Reducer and Selectors separated in separate files.
+
+### Err Store 
+
+#### Actions 
+There are two actions in this store:
+
+* add - set error message in store 
+* remove - clear store 
+
+#### Selectors 
+
+There is one selector in this store:
+
+* selectErr - return saved error message
+
+### Find Store 
+
+#### Actions 
+There are two actions in this store:
+
+* replaceLocation - set new location on store 
+* replacePrice - set new price on store 
+
+#### Selectors 
+
+There are two selectors in this store:
+
+* selectLocation - return location string from store 
+* selectPrice - return price string from store 
+
+### Place Store 
+
+#### Actions 
+There are six actions in this store:
+
+* add - set new  place object on store 
+* remove - set empty object on store 
+* addRate - add new rate on store 
+* addBook - add new book on store 
+* addComment - add new comment on store 
+* removeComment - remove comment on store 
+
+#### Selectors 
+
+There are six selectors in this store:
+ 
+* selectPlace - return all place object from store 
+* selectPics - return pictures aray from store object 
+* selectRate - return rate aray from store  object 
+* selectBooks - return books aray from store object  
+* selectComments - return comments aray from store object  
+* selectOwnerId - return owner id string from store object  
+
+### User Store 
+
+#### Actions 
+There are nine actions in this store:
+
+* add - set new user object on store 
+* remove - set empty object on store 
+* addBook - add new book on book store array 
+* addPlace - add new place on place store array
+* removePlace - remove place of store array
+* updateUser - edit user object in store  
+* addConv - add new conversation on message store array
+* addMessage - add new message on store massages store array 
+* updateUserData - update messages and book in store object 
+
+#### Selectors 
+
+There are seven selectors in this store:
+ 
+* selectUser - return all user object from store 
+* selectIsAuth - return boolean from store object 
+* selectUserId - return user id string from store  object 
+* selectUserBooks - return books array from store object  
+* selectUserNickname - return user nickname string from store object  
+* selectUserPlaces - return user places array from store object  
+* selectUserMessages - return user messages array from store object  
+
+
+[home](#contents)
