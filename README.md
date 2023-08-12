@@ -1,13 +1,14 @@
 # BookingAngularApp
 
 ## Introduction
-This is a project written entirely by me with the purpose of presenting the skills I have on the "Angular" platform. For this purpose, I have used a minimal amount of additional libraries.Please do not abuse the code in this repositories!
+This is a project written entirely by me with the purpose of presenting the skills I have on the "Angular" platform. For this purpose, I have used a minimal amount of additional libraries. Please do not abuse the code in this repositories!
 
 The application is an application for publishing and saving places to spend the night on the occasion of a holiday or business trip.
 
 ## Contents
 1. [Startup](#startup)
 2. [Application structure](#application-structure)
+3. [Modules](#modules)
 
 ## Startup
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
@@ -33,3 +34,25 @@ Accordingly, the file structure of the application is:
     6. Store. 
     7. Types. 
 
+
+
+## Modules 
+
+1. [App module](#app-module)
+2. [Core module](#core-module)
+3. [Place module](#place-module)
+4. [User module](#user-module)
+5. [Shared module](#shared-module) 
+
+
+[...at home](#contents)
+
+## App module
+
+## Core module 
+
+## Place module 
+
+## User module 
+
+## Shared module 
