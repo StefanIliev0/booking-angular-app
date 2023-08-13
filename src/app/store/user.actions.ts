@@ -16,5 +16,6 @@ export const UsersActions = createActionGroup({
         "addConv" : props<{message : Mesage}>(),
         "addMessage" : props<{message : string , messageId : string ,userId : string}>(),
         "updateUserData" : props<{mesages : Mesage[] , books  :UserBook[]}>(),
+        "readMessages" : props<{messageId : string}>(),
         },
     });

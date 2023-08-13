@@ -127,6 +127,7 @@ updateUserData(){
 }
 readMessages(messageId:string){
   let $req : Subscription = new Subscription;
+  this.store.dispatch(UsersActions.readMessages({messageId})); 
   $req =  this.http.post(`${this.USER_BASIC_URI}/messages/${messageId}/read`, {}).subscribe(x => {
     this.updateUserData();
   $req.unsubscribe(); 
