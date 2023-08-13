@@ -353,17 +353,17 @@ makeBook(from : string , to : string , placeID : string , userId? : string ){
   if(!userId){
   $user =  this.userService.getUserId().subscribe(x => {
     user = x ;
+    $user.unsubscribe();
   } )}
   const book : Book = {from ,to , user } 
+  if(!userId){
+    this.store.dispatch(PlaceActions.addBook({book}))
+  }
 $Req = this.http.post(`${this.PLACE_BASIC_URI}/${placeID}/makeBook` , {book , userId : user }).subscribe(x => { 
   if($Req.closed){
     $Req.unsubscribe();
   }
 }) 
-
-if($user.closed){
-      $user.unsubscribe();
-    }
 }
 addComment(text : string , placeID : string ){
   let $comment : Subscription = new Subscription; 

@@ -26,10 +26,11 @@ export const userReducer = createReducer(
     let mess =  {user : userId , mesage : message , read : true }
      return {...state , mesages :[...otherMessages , {...thisMessage , mesages :[...thisMessage.mesages , mess]} ]}}),
   on(UsersActions.updateUserData , (_state , {mesages , books }) => ({..._state , mesages , books})),
-  on(UsersActions.readMessages , (_state , { messageId }) => {
-    let messages = [..._state.mesages] as Mesage[] ; 
-    let thisMessage = messages.filter(x => x._id == messageId)[0];
+  on(UsersActions.readMessages , (state , { messageId }) => {
+    let messages = [...state.mesages] as Mesage[] ; 
+    let thisMessage = messages.filter(x => x._id == messageId);
+    let thisMessageCopy = {...thisMessage[0]}
     let otherMessages = messages.filter(x => x._id != messageId);
-    thisMessage.mesages = thisMessage.mesages.map(x =>({...x , read : true}))
-     return {..._state , mesages :[ thisMessage, ...otherMessages ]}}),
+    thisMessageCopy.mesages = thisMessageCopy.mesages.map(x => ({...x , read : true}))
+     return {...state , mesages :[ thisMessageCopy, ...otherMessages ]}}),
 ); 

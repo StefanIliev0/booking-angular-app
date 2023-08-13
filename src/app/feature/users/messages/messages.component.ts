@@ -44,7 +44,6 @@ approveBook(){
 this.placeServise.makeBook(this.forPlace.from,this.forPlace.to,this.forPlace.id, this.otherUserId);
 this.userService.aproveBook(this.userId , this.otherUserId , this.messageId);
 this.userService.updateUserData();
-this.router.navigate(['/profile','messages']);
 }
 unAproveBook(){
   this.userService.removeConversation( this.messageId);
