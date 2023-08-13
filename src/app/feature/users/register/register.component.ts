@@ -32,7 +32,7 @@ this.service.registerUser(form.value["username"], form.value["password"]).subscr
   //set user on the store 
   this.store.dispatch(UsersActions.add({user}));
   this.service.addUserToLS(user);
-  this.router.navigate(['/']);
+  this.router.navigate(['/holiday-trips/list']);
   }
 })
 

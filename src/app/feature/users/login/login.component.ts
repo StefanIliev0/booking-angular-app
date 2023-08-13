@@ -29,7 +29,7 @@ async login(form : NgForm){
     const user = value as User;
     this.store.dispatch(UsersActions.add({user}));
     this.service.addUserToLS(user);
-    this.router.navigate(['/']);
+    this.router.navigate(['/holiday-trips/list']);
     }
   })
 }}
