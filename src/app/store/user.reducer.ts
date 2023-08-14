@@ -21,16 +21,16 @@ export const userReducer = createReducer(
   on(UsersActions.addConv , (_state , {message}) => ({..._state , mesages : [..._state.mesages , message]})),
   on(UsersActions.addMessage , (state , {message , messageId , userId }) =>{
     let messages = [...state.mesages] as Mesage[] ; 
-    let thisMessage = messages.filter(x => x._id == messageId)[0];
-    let otherMessages = messages.filter(x => x._id != messageId);
+    let thisMessage = messages.filter(x => x.convId == messageId)[0];
+    let otherMessages = messages.filter(x => x.convId != messageId);
     let mess =  {user : userId , mesage : message , read : true }
      return {...state , mesages :[...otherMessages , {...thisMessage , mesages :[...thisMessage.mesages , mess]} ]}}),
   on(UsersActions.updateUserData , (_state , {mesages , books }) => ({..._state , mesages , books})),
   on(UsersActions.readMessages , (state , { messageId }) => {
     let messages = [...state.mesages] as Mesage[] ; 
-    let thisMessage = messages.filter(x => x._id == messageId);
+    let thisMessage = messages.filter(x => x.convId == messageId);
     let thisMessageCopy = {...thisMessage[0]}
-    let otherMessages = messages.filter(x => x._id != messageId);
+    let otherMessages = messages.filter(x => x.convId != messageId);
     thisMessageCopy.mesages = thisMessageCopy.mesages.map(x => ({...x , read : true}))
      return {...state , mesages :[ thisMessageCopy, ...otherMessages ]}}),
 ); 

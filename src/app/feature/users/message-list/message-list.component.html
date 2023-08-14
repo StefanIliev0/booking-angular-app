@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="message" *ngFor="let message of messages" (click)="goToMessage(message._id)">
+    <div class="message" *ngFor="let message of messages" (click)="goToMessage(message.convId)">
         <p>Messages with </p>
         <p class="nickname">{{getNickcname(message.participants)}}</p>
         <p>for place </p>

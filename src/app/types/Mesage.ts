@@ -21,5 +21,5 @@ export  type Mesage = {
                 user :string,
                 mesage : string
             }[],
-            _id : string
+            convId : string
         }

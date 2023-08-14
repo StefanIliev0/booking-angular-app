@@ -107,7 +107,8 @@ removeConversation(convId : string){
 aproveBook(userOneId : string , userTwoId : string, conversationId : string){
   let $req :Subscription = new Subscription;
   $req = this.http.patch(`${this.USER_BASIC_URI}/messages/${conversationId}/approve` , { userOneId , userTwoId}).subscribe(x => {
-      $req.unsubscribe();
+    this.updateUserData();
+    $req.unsubscribe();
   })
 }
 sendMessage(text : string , messageId : string , otherUserId : string , userId : string  ){
@@ -129,7 +130,6 @@ readMessages(messageId:string){
   let $req : Subscription = new Subscription;
   this.store.dispatch(UsersActions.readMessages({messageId})); 
   $req =  this.http.post(`${this.USER_BASIC_URI}/messages/${messageId}/read`, {}).subscribe(x => {
-    this.updateUserData();
   $req.unsubscribe(); 
   })
 }

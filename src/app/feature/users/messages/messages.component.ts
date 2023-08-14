@@ -43,7 +43,6 @@ sendMessage(text : string){
 approveBook(){
 this.placeServise.makeBook(this.forPlace.from,this.forPlace.to,this.forPlace.id, this.otherUserId);
 this.userService.aproveBook(this.userId , this.otherUserId , this.messageId);
-this.userService.updateUserData();
 }
 unAproveBook(){
   this.userService.removeConversation( this.messageId);
@@ -59,7 +58,7 @@ ngOnInit(): void {
 
     this.$messages =  this.userService.getMessages().subscribe(x => {
       x?.forEach(y => {
-        if(y._id == this.messageId){
+        if(y.convId == this.messageId){
           this.forPlace = y.forPlace ;
           if(y.approval.approve || y.approval.unapprove){
 
