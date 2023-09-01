@@ -9,14 +9,14 @@
 .container{
     display: flex;
     flex-direction: column;
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 37em;
+    min-width: 19em;
     gap: 1em;
 }
 .activePic{
     display: flex;
     width: 100%;
-    height: 300px;
+    height: 19em;
     border-radius: 1em;
     overflow: hidden;
     box-shadow: 0.3em -0.3em 0.4em 0 rgba(0,0,0,0.5);
@@ -28,7 +28,7 @@ svg {
 .otherPics{
     display: flex;
     align-items: center;
-    height: 150px;
+    height: 10em;
     width: 100%;
     gap: 0.5em;
     border: 0.4em solid var( --background-link);
@@ -56,8 +56,8 @@ svg {
     border-radius: 20px;
   }
 .inactivePic{
-    flex: 0 0 150px;
-    width: 150px;
+    flex: 0 0 9em;
+    width: 9em;
     border-radius: 0.5em;
     overflow: hidden;
 }

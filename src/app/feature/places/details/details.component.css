@@ -13,27 +13,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 0 1 700px;
+    flex: 0 1 44em;
     margin: 0 auto;
 }
 .images-article{
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 37em;
+    min-width: 19em;
     margin:  2em;
 }
 .rate-article{
-    max-width: 600px;
-    min-width: 300px;
+    max-width: 37em;
+    min-width: 19em;
     margin:  2em;
-    height: 120px;
+    height: 7.5em;
 }
 .details-section{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    flex: 0 1 600px;
-    min-height: 300px;
+    flex: 0 1 37em;
+    min-height: 19em;
     gap: 2em;
 }
 .info-article{
@@ -41,7 +41,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin: 0 auto;
-    min-height: 200px;
+    min-height: 12.5em;
     overflow-y: auto;
 }
  .info-article p {
@@ -59,7 +59,7 @@
     flex-wrap: wrap;
     align-items: center;
     margin: 0 auto;
-    min-height: 100px;
+    min-height: 6em;
     gap: 2em;
 }
 .fac-div{
@@ -73,18 +73,18 @@
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
-    flex: 0 1 500px;
-    max-height: 600px;
-    min-height: 300px;
+    flex: 0 1 31em;
+    max-height: 37em;
+    min-height: 19em;
 }
 .booking-section{
     margin: 0 auto;
-    flex: 0 1 800px;
-    max-height: 600px;
-    min-height: 300px;
+    flex: 0 1 50em;
+    max-height: 37em;
+    min-height: 19em;
 }
 .comments-section {
     margin: 0 auto;
-    flex: 0 1 1300px;
-    min-height: 300px;
+    flex: 0 1 81em;
+    min-height: 19em;
 }
